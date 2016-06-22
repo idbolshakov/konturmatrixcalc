@@ -41,18 +41,45 @@ describe('Matrix', function() {
             assert.equal('number', typeof matrix.MAX_VALUE);
         });
 
-        it ('Should set rowCount & columnCount values to matrix', function() {
+        it('Should set rowCount value to matrix', function() {
 
             matrix = new Matrix(4,5);
 
-            assert.equal(4, matrix.getRowCount());
-            assert.equal(5, matrix.getColumnCount());
+            assert.equal(4, matrix.getSize().rows);
         });
 
+        it('Should set columnCount value to matrix', function() {
+
+            matrix = new Matrix(4,5);
+
+            assert.equal(5, matrix.getSize().columns);
+        });
+
+        it('Should define values {array} property', function() {
+
+            assert.equal(true, Array.isArray(matrix.getValues()));
+        });
+
+        it('values property should be array of arrays', function() {
+
+            for (var i=0, rows = matrix.getSize().rows; i<rows; i++) {
+
+                assert.equal( true, Array.isArray(matrix.getValues()[i]) );
+            };
+        });
+
+        it('values property should be filled by {null} items', function() {
+
+            for (var i=0, l=matrix.getSize().rows; i<l; i++) 
+                for ( var j=0, k=matrix.getSize().columns; j<k; j++) {
+
+                    assert.strictEqual(null, matrix.getValues()[i][j]);
+                }; 
+        });
     });
 
 
-    describe ('Constants', function() {
+    describe('Constants', function() {
 
         var matrix;
         beforeEach(function() {
@@ -60,22 +87,22 @@ describe('Matrix', function() {
             matrix = new Matrix();
         });
 
-        it ('Should contain MIN_SIZE {Number} value', function() {
+        it('Should contain MIN_SIZE {Number} value', function() {
 
             assert.equal('number', typeof matrix.MIN_SIZE);
         });
 
-        it ('Should contain MAX_SIZE {Number} value', function() {
+        it('Should contain MAX_SIZE {Number} value', function() {
 
             assert.equal('number', typeof matrix.MIN_SIZE);
         });
 
-        it ('Should contain MIN_VALUE {Number} value', function() {
+        it('Should contain MIN_VALUE {Number} value', function() {
 
             assert.equal('number', typeof matrix.MIN_SIZE);
         });
 
-        it ('Should contain MAX_VALUE {Number} value', function() {
+        it('Should contain MAX_VALUE {Number} value', function() {
 
             assert.equal('number', typeof matrix.MIN_SIZE);
         });
@@ -91,187 +118,176 @@ describe('Matrix', function() {
             matrix = new Matrix();
         });
 
+        it('Should contain getSize method', function() {
 
-        it ('Should contain setRowCount method', function() {
-            
-            assert.equal('function', typeof matrix.setRowCount);
+            assert.equal('function', typeof matrix.getSize);
         });
 
-        it ('Should contain getRowCount method', function() {
+        it('Should contain setValue method', function() {
 
-            assert.equal('function', typeof matrix.getRowCount);
+            assert.equal('function', typeof matrix.setValue);
         });
-         
-        it ('Should contain setColumnCount method', function() {
 
-            assert.equal('function', typeof matrix.setColumnCount);
+        it('Should contain getValues method', function() {
+
+            assert.equal('function', typeof matrix.getValues);
         });
-       
-        it ('Should contain getColumnCount method', function() {
 
-            assert.equal('function', typeof matrix.getColumnCount);
+        it('Should contain pushRow method', function() {
+
+           assert.equal('function', typeof matrix.pushRow);
+        });
+
+        it('Should contain popRow method', function() {
+
+            assert.equal('function', typeof matrix.popRow);
+        });
+
+        it('Should contain pushColumn method', function() {
+
+            assert.equal('function', typeof matrix.pushColumn);
+        });
+    
+        it('Should contain popColumn method', function() {
+
+            assert.equal('function', typeof matrix.popColumn);
         });
 
     });
 
+    describe('getSize method', function() {
 
-    describe('setRowCount method', function() {
-
-        var matrix;
+        var matrix = null;
         beforeEach(function() {
-        
-            matrix = new Matrix(4, 5);
+
+            matrix = new Matrix(4,5);
         });
 
-        it ('Should set new rows count in matrix', function() {
-          
-            matrix.setRowCount(7);
+        it('Should return a {object}', function() {
 
-            assert.equal(7, matrix.getRowCount());
+            assert.equal('object', typeof matrix.getSize());
         });
 
-        it ('Should set matrix.MAX_SIZE if value > MAX_SIZE', function() {
+        it('Should contain rows property', function() {
 
-            matrix.setRowCount(matrix.MAX_SIZE+1);
-
-            assert.equal(matrix.MAX_SIZE, matrix.getRowCount());
+            assert.equal(true, 'rows' in matrix.getSize()); 
         });
 
-        it ('Should set matrix.MIN_SIZE  in other cases', function() {
+        it('Rows property should be a {int} type', function() {
 
-            var matrix1 = new Matrix(4,5);
-            var matrix2 = new Matrix(4,5);
-            var matrix3 = new Matrix(4,5);
-            var matrix4 = new Matrix(4,5);
+            var rows = matrix.getSize().rows;
 
-            matrix1.setRowCount(matrix.MIN_SIZE-1);
-            matrix2.setRowCount(null);
-            matrix3.setRowCount(undefined);
-            matrix4.setRowCount(NaN);
-
-            assert.equal(matrix.MIN_SIZE, matrix1.getRowCount());
-            assert.equal(matrix.MIN_SIZE, matrix2.getRowCount());
-            assert.equal(matrix.MIN_SIZE, matrix3.getRowCount());
-            assert.equal(matrix.MIN_SIZE, matrix4.getRowCount());
+            assert.equal(true, rows === Number.parseInt(rows)); 
         });
+
+        it('Should contain columns property', function() {
+
+            assert.equal(true, 'columns' in matrix.getSize()); 
+        });
+
+        it('Columns property should be a {int} type', function() {
+
+            var columns = matrix.getSize().columns;
+
+            assert.equal(true, columns === Number.parseInt(columns)); 
+        });
+
     });
 
+   describe('getValues method', function() {
 
-    describe('setColumnCount method', function() {
-
-        var matrix;
+        var matrix = null;
         beforeEach(function() {
-        
-            matrix = new Matrix(4, 5);
+
+            matrix = new Matrix(4,5);
         });
 
-        it ('Should set new columns count in matrix', function() {
-          
-            matrix.setColumnCount(7);
+        it('Should return an {Array}', function() {
 
-            assert.equal(7, matrix.getColumnCount());
-        });
-
-        it ('Should set matrix.MAX_SIZE if value > MAX_SIZE', function() {
-
-            matrix.setColumnCount(matrix.MAX_SIZE+1);
-
-            assert.equal(matrix.MAX_SIZE, matrix.getColumnCount());
-        });
-
-        it ('Should set matrix.MIN_SIZE  in other cases', function() {
-
-            var matrix1 = new Matrix(4,5);
-            var matrix2 = new Matrix(4,5);
-            var matrix3 = new Matrix(4,5);
-            var matrix4 = new Matrix(4,5);
-
-            matrix1.setColumnCount(matrix.MIN_SIZE-1);
-            matrix2.setColumnCount(null);
-            matrix3.setColumnCount(undefined);
-            matrix4.setColumnCount(NaN);
-
-            assert.equal(matrix.MIN_SIZE, matrix1.getColumnCount());
-            assert.equal(matrix.MIN_SIZE, matrix2.getColumnCount());
-            assert.equal(matrix.MIN_SIZE, matrix3.getColumnCount());
-            assert.equal(matrix.MIN_SIZE, matrix4.getColumnCount());
+            assert.equal(true, Array.isArray(matrix.getValues() )); 
         });
     });
 
+   describe('setValue method', function() {
 
-    describe('getRowCount method', function() {
+       it('Should set new value to matrix element', function() {
 
-        it ('Should return a value of Number type', function() {
+           var matrix = new Matrix(4,5);
 
-            var matrix1 = new Matrix(4, 5);
-            var matrix2 = new Matrix('4', '5');
-            var matrix3 = new Matrix({}, {});
-            var matrix4 = new Matrix(NaN, NaN);
-            var matrix5 = new Matrix(null, null);
-            var matrix6 = new Matrix(undefined, undefined);
+           matrix.setValue(3,4,45);
 
-            assert.equal('number', typeof matrix1.getRowCount());
-            assert.equal('number', typeof matrix2.getRowCount());
-            assert.equal('number', typeof matrix3.getRowCount());
-            assert.equal('number', typeof matrix4.getRowCount());
-            assert.equal('number', typeof matrix5.getRowCount());
-            assert.equal('number', typeof matrix6.getRowCount());
-        });
+           assert.equal(45, matrix.getValues()[3][4]);
+       });
+   });
 
-        it ('Should return matrix rows count', function() {
+   describe('pushRow method', function() {
 
-            var matrix = new Matrix(4, 5);
+       it('Should add new row in the end of matrix', function() {
 
-            assert.equal(4, matrix.getRowCount());
-        });
-    });
+           var matrix = new Matrix(4,6);
 
-    describe('getColumnCount method', function() {
+           matrix.pushRow();
 
-        it ('Should return a value of Number type', function() {
+           assert.equal(5, matrix.getSize().rows);
+           assert.equal( true, Array.isArray(matrix.getValues()[4]) );
 
-            var matrix1 = new Matrix(4, 5);
-            var matrix2 = new Matrix('4', '5');
-            var matrix3 = new Matrix({}, {});
-            var matrix4 = new Matrix(NaN, NaN);
-            var matrix5 = new Matrix(null, null);
-            var matrix6 = new Matrix(undefined, undefined);
+       });
+   });
 
-            assert.equal('number', typeof matrix1.getColumnCount());
-            assert.equal('number', typeof matrix2.getColumnCount());
-            assert.equal('number', typeof matrix3.getColumnCount());
-            assert.equal('number', typeof matrix4.getColumnCount());
-            assert.equal('number', typeof matrix5.getColumnCount());
-            assert.equal('number', typeof matrix6.getColumnCount());
-        });
+   describe('popRow method', function() {
 
+       it('Should delete row in the end of matrix', function() {
 
-        it ('Should return matrix columns count', function() {
+           var matrix = new Matrix(4, 5);
 
-            var matrix = new Matrix(4, 5);
+           matrix.popRow();
 
-            assert.equal(5, matrix.getColumnCount());
-        });
+           assert.equal(3, matrix.getSize().rows);
+           assert.equal('undefined', typeof matrix.getValues()[3]);
 
-    });
+       });
+   });
 
+   describe('pushColumn method', function() {
+
+       var matrix = null;
+       beforeEach(function() {
+
+           matrix = new Matrix(4,5);
+
+           matrix.pushColumn();
+       });
+
+       it('Should add  new column in the end of matrix', function() {
+
+           assert.equal(6, matrix.getSize().columns);
+           assert.strictEqual(null, matrix.getValues()[3][5]);
+       });
+
+       it('new column should be filled by {null} items', function() {
+
+           for (var i=0, l=matrix.getSize().rows; i<l; i++) {
+
+               assert.strictEqual(null, matrix.getValues()[i][5]);
+           };
+       });
+   });
+
+   describe('popColumn method', function() {
+
+       var matrix = null;
+       beforeEach(function() {
+
+           matrix = new Matrix(4,5);
+
+           matrix.popColumn();
+       });
+
+       it('Should delete column from the end of matrix', function() { 
+
+           assert.equal(4, matrix.getSize().columns);
+           assert.equal('undefined', typeof matrix.getValues()[3][4]);
+       });
+   });
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
