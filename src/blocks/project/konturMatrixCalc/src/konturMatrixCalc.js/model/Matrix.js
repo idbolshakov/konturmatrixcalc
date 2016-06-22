@@ -19,6 +19,7 @@ if (module) var APP = {};
  * 4. Удалять последнюю строку в матрице [@see popRow()]
  * 5. Добавлять столбец к концу матрицы [@see pushColumn()]
  * 6. Удалять последний столбец в матрице [@see popColumn()] 
+ * 7. Очищать матрицу
  *
  *
  * Если значение для элемента в матрице еще не задано, то оно равно {null}
@@ -58,20 +59,24 @@ if (module) var APP = {};
         this._rows     = rows;
         this._columns  = columns; 
 
-        this._values   = this._getMatrixStructure();
+        this._values   = [];
+        this.clear(); // заполняем матрицу {null} эле-ами
     };
 
-    /** @private */
-    Matrix.prototype._getMatrixStructure = function() {
-
-        var matrixStructure = [];
+     /**
+     * clear
+     *
+     * очищаем матрицу
+     * [присваиваем все эл-ам матрицы значение null]
+     *
+     * @public
+     */
+     Matrix.prototype.clear = function() {
 
         for (var i=0, l=this._rows; i<l; i++) {
 
-            matrixStructure[i] = this._getColumnOfNullItems();
+            this._values[i] = this._getColumnOfNullItems();
         };
-
-        return matrixStructure;
     };
 
     /** @private */
@@ -200,6 +205,7 @@ if (module) var APP = {};
         this._columns--;
     };
 
+    
 
     ////////////////////////////////////////////////////////////////////////////
     // EXPORT

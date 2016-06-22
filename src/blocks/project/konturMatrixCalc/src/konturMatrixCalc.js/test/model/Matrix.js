@@ -10,7 +10,7 @@ var Matrix = require('../../model/Matrix.js');
 // TESTS
 ////////////////////////////////////////////////////////////////////////////////
 
-describe('Matrix', function() {
+describe('Matrix class', function() {
 
     describe('Constructor', function() {
 
@@ -153,6 +153,11 @@ describe('Matrix', function() {
             assert.equal('function', typeof matrix.popColumn);
         });
 
+        it('Should contain clear method', function() {
+
+            assert.equal('function', typeof matrix.clear);
+        });
+
     });
 
     describe('getSize method', function() {
@@ -287,6 +292,28 @@ describe('Matrix', function() {
 
            assert.equal(4, matrix.getSize().columns);
            assert.equal('undefined', typeof matrix.getValues()[3][4]);
+       });
+   });
+
+   describe('clear method', function() {
+
+       it('Should set all values in matrix = {null}', function(){
+
+            var matrix = new Matrix(4,5);
+            matrix.setValue(1,1,1);
+            matrix.setValue(2,2,2);
+            matrix.clear();
+
+            var rows = matrix.getSize().rows;
+            var cols = matrix.getSize().columns;
+
+            for (var i=0; i<rows; i++) {
+
+                for (var j=0; j<cols; j++) {
+
+                    assert.strictEqual(null, matrix.getValues()[i][j]);
+                };
+            };
        });
    });
 });
