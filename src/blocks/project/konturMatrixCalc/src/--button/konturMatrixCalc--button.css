@@ -1,0 +1,12 @@
+/**
+ * @section konturMatrixCalc
+ * @subsection konturMatrixCalc--button
+ */
+.konturMatrixCalc--button {
+
+    display: inline-block;
+
+    margin: 0;
+    padding: 0;
+}
+

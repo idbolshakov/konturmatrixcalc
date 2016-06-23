@@ -1,0 +1,9 @@
+/**
+ * @section konturmatrixcalc--toolsPanel
+ * @subsection konturmatrixcalc--toolsPanel-state
+ */
+.konturMatrixCalc--toolsPanel-state-error {
+
+    background: #fbc1c0;
+}
+

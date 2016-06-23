@@ -1,0 +1,14 @@
+/**
+ * @section konturMatrixCalc
+ * @subsection konturMatrixCalc--matrixPanel
+ */
+.konturMatrixCalc--matrixPanel {
+
+    display: block;
+
+    margin: 0;
+    padding: 0;
+
+    height: 100%;
+}
+

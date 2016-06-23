@@ -1,0 +1,14 @@
+/**
+ * @section konturMatrixCalc
+ * @subsection konturMatrixCalc--functionalSection
+ */
+.konturMatrixCalc--functinalSection {
+
+    display: block;
+
+    margin: 0;
+    padding: 0;
+
+    height: 100%;
+}
+

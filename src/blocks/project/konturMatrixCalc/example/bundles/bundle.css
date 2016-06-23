@@ -1,0 +1,161 @@
+/**
+ * konturMatrixCalc block CSS styles
+ *
+ * @package konturMatrixCalc
+ * @author idbolshakov@gmail.com
+ * @section konturMatrixCalc
+ */
+.konturMatrixCalc {
+
+    display: block;
+
+    margin: 0;
+    padding: 0;
+
+    overflow: auto;
+}
+
+/**
+ * @section konturMatrixCalc
+ * @subsection konturMatrixCalc--toolsPanel
+ */
+.konturMatrixCalc--toolsPanel {
+
+    display: block;
+
+    float: left;
+    box-sizing: border-box;
+
+    margin: 0;
+    padding: 0;
+
+    width: 33%;
+    min-width: 330px;
+
+    height: 100%;
+}
+
+/**
+ * @section konturmatrixcalc--toolsPanel
+ * @subsection konturmatrixcalc--toolsPanel-state
+ */
+.konturMatrixCalc--toolsPanel-state-normal {
+
+    background: #bcbcbc;
+}
+
+/**
+ * @section konturMatrixCalc--toolsPanel
+ * @subsection konturMatrixCalc--toolsPanel-state
+ */
+.konturMatrixCalc--toolsPanel-state-input {
+
+    background: #5199db;
+}
+
+/**
+ * @section konturmatrixcalc--toolsPanel
+ * @subsection konturmatrixcalc--toolsPanel-state
+ */
+.konturMatrixCalc--toolsPanel-state-error {
+
+    background: #fbc1c0;
+}
+
+/**
+ * @section konturMatrixCalc--functionalSection
+ * @subsection konturMatrixCalc--functionalSection-section
+ */
+.konturMatrixCalc--functinalSection-section-matrixCalculate {
+
+    margin: 0;
+    padding: 0;
+}
+
+/**
+ * @section konturMatrixCalc--functionalSection
+ * @subsection konturMatrixCalc--functionalSection-section
+ */
+.konturMatrixCalc--functinalSection-section-matrixEdit {
+
+    margin: 0;
+    padding: 0;
+}
+
+/**
+ * @section konturMatrixCalc--functionalSection
+ * @subsection konturMatrixCalc--functionalSection-section
+ */
+.konturMatrixCalc--functinalSection-section-matrixSize {
+
+    margin: 0;
+    padding: 0;
+}
+/**
+ * @section konturMatrixCalc--functionalSection
+ * @subsection konturMatrixCalc--functionalSection-section
+ */
+.konturMatrixCalc--functinalSection-section-errorMessage {
+
+    margin: 0;
+    padding: 0;
+}
+
+/**
+ * @section konturMatrixCalc
+ * @subsection konturMatrixCalc--button
+ */
+.konturMatrixCalc--button {
+
+    display: inline-block;
+
+    margin: 0;
+    padding: 0;
+}
+
+/**
+ * @section konturMatrixCalc--button
+ * @subsection konturMatrixCalc--button-icon
+ */
+.konturMatrixCalc--button-icon-add {
+
+}
+
+/**
+ * @section konturMatrixCalc--button
+ * @subsection konturMatrixCalc--button-icon
+ */
+.konturMatrixCalc--button-icon-clear {
+
+}
+
+/**
+ * @section konturMatrixCalc--button
+ * @subsection konturMatrixCalc--button-icon
+ */
+.konturMatrixCalc--button-icon-delete {
+
+}
+
+/**
+ * @section konturMatrixCalc--button
+ * @subsection konturMatrixCalc--button-icon
+ */
+.konturMatrixCalc--button-icon-swap {
+
+}
+
+/**
+ * @section konturMatrixCalc
+ * @subsection konturMatrixCalc--matrixPanel
+ */
+.konturMatrixCalc--matrixPanel {
+
+    display: block;
+
+    margin: 0;
+    padding: 0;
+
+    height: 100%;
+}
+

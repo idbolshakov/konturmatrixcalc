@@ -10,9 +10,24 @@ PROJECT = konturMatrixCalc
 
 BLOCK   = konturMatrixCalc
 
-CSS     = src/konturMatrixCalc.css
+CSS     = src/konturMatrixCalc.css\
+		  src/--toolsPanel/konturMatrixCalc--toolsPanel.css\
+		  src/--toolsPanel/-state/-normal/konturMatrixCalc--toolsPanel-state-normal.css\
+		  src/--toolsPanel/-state/-input/konturMatrixCalc--toolsPanel-state-input.css\
+		  src/--toolsPanel/-state/-error/konturMatrixCalc--toolsPanel-state-error.css\
+		  src/--functionalSection/-section/-matrixCalculate/konturMatrixCalc--functionalSection-section-matrixCalculate.css\
+		  src/--functionalSection/-section/-matrixEdit/konturMatrixCalc--functionalSection-section-matrixEdit.css\
+		  src/--functionalSection/-section/-matrixSize/konturMatrixCalc--functionalSection-section-matrixSize.css\
+		  src/--functionalSection/-section/-errorMessage/konturMatrixCalc--functionalSection-section-errorMessage.css\
+		  src/--button/konturMatrixCalc--button.css\
+		  src/--button/-icon/-add/konturMatrixCalc--button-icon-add.css\
+		  src/--button/-icon/-clear/konturMatrixCalc--button-icon-clear.css\
+		  src/--button/-icon/-delete/konturMatrixCalc--button-icon-delete.css\
+		  src/--button/-icon/-swap/konturMatrixCalc--button-icon-swap.css\
+		  src/--matrixPanel/konturMatrixCalc--matrixPanel.css
 
-JS      = src/konturMatrixCalc.js/konturMatrixCalc.js 
+JS      = src/konturMatrixCalc.js/model/Matrix.js\
+		  src/konturMatrixCalc.js/model/MatrixMultiply.js
 
 SVG     =  
 
@@ -26,6 +41,7 @@ NJK     =
 
 TARGETS = delete_old_files\
 	      css_merge\
+		  js_merge\
 		  example_update
 
 ################################################################################
