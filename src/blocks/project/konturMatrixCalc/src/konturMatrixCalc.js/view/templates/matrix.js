@@ -24,48 +24,67 @@ if (module) {
 
         var matrix = {
             'A': '<div class="konturMatrixCalc--matrix">'
-                    +'<table id="konturMatrixCalc--matrix-A">'
-                        +'<tr>'
-                            +'<td><input type="text" value="" placeholder="1,1"></td>'
-                            +'<td><input type="text" value="" placeholder="1,2"></td>'
-                        +'</tr>'
-                        +'<tr>'
-                            +'<td><input type="text" value="" placeholder="2,1"></td>'
-                            +'<td><input type="text" value="" placeholder="2,2"></td>'
-                        +'</tr>'
-                    +'</table>'
-                        +'<span>A</span>'
+                    +'<table id="konturMatrixCalc--matrix-A"><tbody></tbody></table>'
+                    +'<span>A</span>'
                  +'</div><br>',
 
             'B': '<div class="konturMatrixCalc--matrix">'
-                    +'<table id="konturMatrixCalc--matrix-A">'
-                        +'<tr>'
-                            +'<td><input type="text" value="" placeholder="1,1"></td>'
-                            +'<td><input type="text" value="" placeholder="1,2"></td>'
-                        +'</tr>'
-                        +'<tr>'
-                            +'<td><input type="text" value="" placeholder="2,1"></td>'
-                            +'<td><input type="text" value="" placeholder="2,2"></td>'
-                        +'</tr>'
-                    +'</table><br>'
-                        +'<span>B</span>'
+                    +'<table id="konturMatrixCalc--matrix-B"><tbody></tbody></table><br>'
+                    +'<span>B</span>'
                  +'</div>',
 
             'R': '<div class="konturMatrixCalc--matrix">'
-                    +'<table id="konturMatrixCalc--matrix-A">'
-                        +'<tr>'
-                            +'<td><input type="text" value="" placeholder="1,1" disabled></td>'
-                            +'<td><input type="text" value="" placeholder="1,2" disabled></td>'
-                        +'</tr>'
-                        +'<tr>'
-                            +'<td><input type="text" value="" placeholder="2,1" disabled></td>'
-                            +'<td><input type="text" value="" placeholder="2,2" disabled></td>'
-                        +'</tr>'
-                    +'</table>'
+                    +'<table id="konturMatrixCalc--matrix-R"><tbody></tbody></table>'
                  +'</div>'
         };
 
         return matrix[type];
+    };
+
+    /**
+     * @public
+     * @return html разметку строки матрицы
+     */
+    var matrixRow = function(data) {
+
+        var row  = '<tr>';
+
+        for (var i=0, l=data.columns; i<l; i++) {
+
+            data.column = i;
+            
+            if (data.values === undefined) {
+				
+				data.value = null;
+			} else {
+				
+				data.value  = data.values[i] || null;
+			};
+   
+            row += matrixColumn(data);
+        };
+        row +='</tr>';
+        
+        return row;
+    };
+
+    /**
+     * @public
+     * @return html разметку столбца матрицы
+     */
+    var matrixColumn = function(data) {
+		
+		var value = data.value || "";
+
+        return    '<td>'
+                    +'<input '
+                        +'type="text" '
+                        +'value="'+value+'" '
+                        +'data-row="'+data.row+'" '
+                        +'data-column="'+data.column+'" ' 
+                        +'placeholder="'+(data.row+1)+','+(data.column+1)+'" ' 
+                        +data.disabled+'>'
+                  '</td>';
     };
 
     ////////////////////////////////////////////////////////////////////////////
@@ -74,7 +93,9 @@ if (module) {
     
     KONTUR_MATRIX_CALC.view.templates.matrix = {
         
-        clearMatrix: clearMatrix
+        clearMatrix: clearMatrix,
+        matrixRow: matrixRow,
+        matrixColumn: matrixColumn
     };
 
     // unit-testing stuff

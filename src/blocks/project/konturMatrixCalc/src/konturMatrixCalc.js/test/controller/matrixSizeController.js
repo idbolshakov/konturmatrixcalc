@@ -4,24 +4,24 @@
 
 var assert = require('assert');
 
-var matrixController = require('../../controller/matrixController.js');
+var matrixSizeController = require('../../controller/matrixSizeController.js');
 
 ////////////////////////////////////////////////////////////////////////////////
 // TESTS
 ////////////////////////////////////////////////////////////////////////////////
 
-describe('matrix controller', function() {
+describe('matrixSize controller', function() {
 
     it('Should be an {object}', function() {
 
-        assert.equal('object', typeof matrixController);
+        assert.equal('object', typeof matrixSizeController);
     });
 
     describe('public methods', function() {
 
         it('Should contain the init method', function() {
 
-            assert.equal('function', typeof matrixController.init);
+            assert.equal('function', typeof matrixSizeController.init);
         });
     });
 });

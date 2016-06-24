@@ -31,29 +31,17 @@ if (module) {
         _containerId          = 'konturMatrixCalc',
         _container            = null,
 
-        _calculateButtonId    = 'konturMatrixCalc--calculateButton',
-            
-        _clearButtonId        = 'konturMatrixCalc--button-clear',
-
-        _swapButtonId         = 'konturMatrixCalc--button-swap',
-
-        _matrixARadioId       = 'kontruMatrixCalc--matrixCheckbox-matrix-A',
-
-        _matrixBRadioId       = 'kontruMatrixCalc--matrixCheckbox-matrix-B',
-
-        _addRowButtonId       = 'konturMatrixCalc--button-addRow',
-
-        _deleteRowButtonId    = 'konturMatrixCalc--button-deleteRow',
-
-        _addColumnButtonId    = 'konturMatrixCalc--button-addColumn',
-
-        _deleteColumnButtonId = 'konturMatrixCalc--button-deleteColumn';
+        _toolsPanelId         = 'konturMatrixCalc--toolsPanel',
+        _toolsPanelContainer  = null;
 
     /**
      * init
      *
-     * Находим #konturMatrixCalc в DOM и
-     * сохраняем на него ссылку
+     * Находим #konturMatrixCalc в DOM и сохраняем на него ссылку
+     *
+     * отрисовываем интерфейс konturMatrixCalc
+     *
+     * находим #konturMatrixCalc--toolsPanel в DOM и сохраняем на него ссылку
      * 
      * @public
      */
@@ -61,6 +49,9 @@ if (module) {
 
         _container = document.getElementById(_containerId);
         _container.innerHTML =  _interfaceTemplate();
+
+
+        _toolsPanelContainer = document.getElementById(_toolsPanelId);
     };
 
     /**
@@ -74,6 +65,24 @@ if (module) {
         return _container;
     };
 
+    /**
+     * changeToolsPanelState
+     *
+     * @public
+     * @param {int} - id состояниия - 0 - обычное, 1 - ввод данных, 2 - ошбика
+     */
+    var changeToolsPanelState = function(stateId) {
+
+        var state =  [
+
+            'konturMatrixCalc--toolsPanel konturMatrixCalc--toolsPanel-state-normal',
+            'konturMatrixCalc--toolsPanel konturMatrixCalc--toolsPanel-state-input',
+            'konturMatrixCalc--toolsPanel konturMatrixCalc--toolsPanel-state-error'
+        ];
+
+        _toolsPanelContainer.className = state[stateId];
+    };
+
     
     ////////////////////////////////////////////////////////////////////////////
     // EXPORT
@@ -82,7 +91,8 @@ if (module) {
     KONTUR_MATRIX_CALC.view.konturMatrixCalcView = {
         
         init: init,
-        getContainer: getContainer
+        getContainer: getContainer, 
+        changeToolsPanelState: changeToolsPanelState
     };
 
     // unit-testing stuff

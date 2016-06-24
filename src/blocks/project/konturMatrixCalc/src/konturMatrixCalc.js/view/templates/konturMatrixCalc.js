@@ -23,7 +23,7 @@ if (module) {
     var konturMatrixCalc = function() {
 
         return ''
-            +'<div class="konturMatrixCalc--toolsPanel konturMatrixCalc--toolsPanel-state-normal">'
+            +'<div id="konturMatrixCalc--toolsPanel" class="konturMatrixCalc--toolsPanel konturMatrixCalc--toolsPanel-state-normal">'
                 
                 +'<div class="konturMatrixCalc--functionalSection konturMatrixCalc--functionalSection-section-matrixCalculate">'
 
@@ -34,7 +34,9 @@ if (module) {
                         +'value="Умножить матрицы">'
                 +'</div>'
 
-                +'<div class="konturMatrixCalc--functionalSection konturMatrixCalc--functionalSection-section-matrixEdit">'
+                +'<div '
+					+'id="konturMatrixCalc--functionalSection-matrixEdit" '
+					+'class="konturMatrixCalc--functionalSection konturMatrixCalc--functionalSection-section-matrixEdit">'
 
                     +'<input '
                         +'id="konturMatrixCalc--button-clear"'
@@ -50,7 +52,9 @@ if (module) {
                         +'value="Поменять матрицы местами">'
                 +'</div>'
 
-                +'<div class="konturMatrixCalc--functionalSection konturMatrixCalc--functionalSection-section-matrixSize">'
+                +'<div '
+					+'id="konturMatrixCalc--functionalSection-section-matrixSize" '
+					+'class="konturMatrixCalc--functionalSection konturMatrixCalc--functionalSection-section-matrixSize">'
 
                     +'<label class="konturMatrixCalc--matrixCheckbox">'
                         +'<input '

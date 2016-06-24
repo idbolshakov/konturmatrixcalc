@@ -7,12 +7,11 @@ if (module) {
 };
 
 /**
- * konturMatrixCalcController
+ * matrixCalcController
  * 
- * модуль konturMatrixCalcView,
- * необходим для управления представлением 
- * блока konturMatrixCalc
- *
+ * модуль matrixEditController,
+ * необходим для управления кпнокой умножения матриц
+ * 
  * @version 1.0.0
  * @author idbolshakov@gmail.com
  */
@@ -26,9 +25,6 @@ if (module) {
 
    /**
      * init
-     *
-     * получаем ссылки на модель и представление 
-     * отрисовываем интерфейс KonturMatrixCalc
      * 
      * @public
      */
@@ -37,13 +33,31 @@ if (module) {
         _model = model;
         _view  = view;
 
-        _view.getKonturMatrixCalcView().init();
+        _view.getMatrixCalcView().init();
+          
+        _addEventsListeners(_view.getMatrixCalcView().getCalcButton());
     };
+
+    /** @private **/
+    var _addEventsListeners = function(container) {
+
+        // клик по кнопке в области действия контроллера
+        container.addEventListener('click', _onClick);
+       
+    };
+
+    /** @private */
+    var _onClick = function(e) {
+		
+		alert('click calc button');
+    };
+
+
     ////////////////////////////////////////////////////////////////////////////
     // EXPORT
     ////////////////////////////////////////////////////////////////////////////
 
-    KONTUR_MATRIX_CALC.controller.konturMatrixCalcController = {
+    KONTUR_MATRIX_CALC.controller.matrixCalcController = {
         
         init: init
     };
@@ -53,7 +67,7 @@ if (module) {
     // uglifyjs --define module=false bundle.js -c
     if (module) {
         
-        module.exports = KONTUR_MATRIX_CALC.controller.konturMatrixCalcController;
+        module.exports = KONTUR_MATRIX_CALC.controller.matrixCalcController;
     };
 
     return KONTUR_MATRIX_CALC;

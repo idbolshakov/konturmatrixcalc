@@ -7,6 +7,8 @@ if (module) {
 
     KONTUR_MATRIX_CALC.view.kontruMatrixCalcView = require('./konturMatrixCalcView.js');
     KONTUR_MATRIX_CALC.view.matrixView = require('./matrixView.js');
+    KONTUR_MATRIX_CALC.view.matrixSizeView = require('./matrixSizeView.js');
+    KONTUR_MATRIX_CALC.view.matrixCalcView = require('./matrixCalcView.js');
 };
 
 /**
@@ -26,7 +28,10 @@ if (module) {
     /** @import */
     var
         _konturMatrixCalcView = KONTUR_MATRIX_CALC.view.konturMatrixCalcView,
-        _matrixView           = KONTUR_MATRIX_CALC.view.matrixView;
+        _matrixView           = KONTUR_MATRIX_CALC.view.matrixView,
+        _matrixSizeView       = KONTUR_MATRIX_CALC.view.matrixSizeView,
+        _matrixEditView       = KONTUR_MATRIX_CALC.view.matrixEditView,
+        _matrixCalcView       = KONTUR_MATRIX_CALC.view.matrixCalcView;
 
 
     /** 
@@ -49,7 +54,6 @@ if (module) {
         return _konturMatrixCalcView;
     };
 
-
     /**
      *  getMatrixView
      *
@@ -61,6 +65,40 @@ if (module) {
         return _matrixView;
     };
 
+    /**
+     *  getMatrixSizeView
+     *
+     *  @public
+     *  @return {object}
+     */
+    var getMatrixSizeView = function() {
+
+        return _matrixSizeView;
+    };
+    
+    /**
+     *  getMatrixEditView
+     *
+     *  @public
+     *  @return {object}
+     */
+    var getMatrixEditView = function() {
+
+        return _matrixEditView;
+    }; 
+    
+    /**
+     *  getMatrixEditView
+     *
+     *  @public
+     *  @return {object}
+     */
+    var getMatrixCalcView = function() {
+
+        return _matrixCalcView;
+    };        
+
+
 
     ////////////////////////////////////////////////////////////////////////////
     // EXPORT
@@ -70,7 +108,10 @@ if (module) {
 
         init: init,
         getKonturMatrixCalcView: getKonturMatrixCalcView,
-        getMatrixView: getMatrixView
+        getMatrixView: getMatrixView,
+        getMatrixSizeView: getMatrixSizeView,
+        getMatrixEditView: getMatrixEditView,
+        getMatrixCalcView: getMatrixCalcView
 	};
 
     // unit-testing stuff

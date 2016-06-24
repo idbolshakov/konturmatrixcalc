@@ -520,48 +520,67 @@ if (module) {
 
         var matrix = {
             'A': '<div class="konturMatrixCalc--matrix">'
-                    +'<table id="konturMatrixCalc--matrix-A">'
-                        +'<tr>'
-                            +'<td><input type="text" value="" placeholder="1,1"></td>'
-                            +'<td><input type="text" value="" placeholder="1,2"></td>'
-                        +'</tr>'
-                        +'<tr>'
-                            +'<td><input type="text" value="" placeholder="2,1"></td>'
-                            +'<td><input type="text" value="" placeholder="2,2"></td>'
-                        +'</tr>'
-                    +'</table>'
-                        +'<span>A</span>'
+                    +'<table id="konturMatrixCalc--matrix-A"><tbody></tbody></table>'
+                    +'<span>A</span>'
                  +'</div><br>',
 
             'B': '<div class="konturMatrixCalc--matrix">'
-                    +'<table id="konturMatrixCalc--matrix-A">'
-                        +'<tr>'
-                            +'<td><input type="text" value="" placeholder="1,1"></td>'
-                            +'<td><input type="text" value="" placeholder="1,2"></td>'
-                        +'</tr>'
-                        +'<tr>'
-                            +'<td><input type="text" value="" placeholder="2,1"></td>'
-                            +'<td><input type="text" value="" placeholder="2,2"></td>'
-                        +'</tr>'
-                    +'</table><br>'
-                        +'<span>B</span>'
+                    +'<table id="konturMatrixCalc--matrix-B"><tbody></tbody></table><br>'
+                    +'<span>B</span>'
                  +'</div>',
 
             'R': '<div class="konturMatrixCalc--matrix">'
-                    +'<table id="konturMatrixCalc--matrix-A">'
-                        +'<tr>'
-                            +'<td><input type="text" value="" placeholder="1,1" disabled></td>'
-                            +'<td><input type="text" value="" placeholder="1,2" disabled></td>'
-                        +'</tr>'
-                        +'<tr>'
-                            +'<td><input type="text" value="" placeholder="2,1" disabled></td>'
-                            +'<td><input type="text" value="" placeholder="2,2" disabled></td>'
-                        +'</tr>'
-                    +'</table>'
+                    +'<table id="konturMatrixCalc--matrix-R"><tbody></tbody></table>'
                  +'</div>'
         };
 
         return matrix[type];
+    };
+
+    /**
+     * @public
+     * @return html разметку строки матрицы
+     */
+    var matrixRow = function(data) {
+
+        var row  = '<tr>';
+
+        for (var i=0, l=data.columns; i<l; i++) {
+
+            data.column = i;
+            
+            if (data.values === undefined) {
+				
+				data.value = null;
+			} else {
+				
+				data.value  = data.values[i] || null;
+			};
+   
+            row += matrixColumn(data);
+        };
+        row +='</tr>';
+        
+        return row;
+    };
+
+    /**
+     * @public
+     * @return html разметку столбца матрицы
+     */
+    var matrixColumn = function(data) {
+		
+		var value = data.value || "";
+
+        return    '<td>'
+                    +'<input '
+                        +'type="text" '
+                        +'value="'+value+'" '
+                        +'data-row="'+data.row+'" '
+                        +'data-column="'+data.column+'" ' 
+                        +'placeholder="'+(data.row+1)+','+(data.column+1)+'" ' 
+                        +data.disabled+'>'
+                  '</td>';
     };
 
     ////////////////////////////////////////////////////////////////////////////
@@ -570,7 +589,9 @@ if (module) {
     
     KONTUR_MATRIX_CALC.view.templates.matrix = {
         
-        clearMatrix: clearMatrix
+        clearMatrix: clearMatrix,
+        matrixRow: matrixRow,
+        matrixColumn: matrixColumn
     };
 
     // unit-testing stuff
@@ -610,7 +631,7 @@ if (module) {
     var konturMatrixCalc = function() {
 
         return ''
-            +'<div class="konturMatrixCalc--toolsPanel konturMatrixCalc--toolsPanel-state-normal">'
+            +'<div id="konturMatrixCalc--toolsPanel" class="konturMatrixCalc--toolsPanel konturMatrixCalc--toolsPanel-state-normal">'
                 
                 +'<div class="konturMatrixCalc--functionalSection konturMatrixCalc--functionalSection-section-matrixCalculate">'
 
@@ -621,7 +642,9 @@ if (module) {
                         +'value="Умножить матрицы">'
                 +'</div>'
 
-                +'<div class="konturMatrixCalc--functionalSection konturMatrixCalc--functionalSection-section-matrixEdit">'
+                +'<div '
+					+'id="konturMatrixCalc--functionalSection-matrixEdit" '
+					+'class="konturMatrixCalc--functionalSection konturMatrixCalc--functionalSection-section-matrixEdit">'
 
                     +'<input '
                         +'id="konturMatrixCalc--button-clear"'
@@ -637,7 +660,9 @@ if (module) {
                         +'value="Поменять матрицы местами">'
                 +'</div>'
 
-                +'<div class="konturMatrixCalc--functionalSection konturMatrixCalc--functionalSection-section-matrixSize">'
+                +'<div '
+					+'id="konturMatrixCalc--functionalSection-section-matrixSize" '
+					+'class="konturMatrixCalc--functionalSection konturMatrixCalc--functionalSection-section-matrixSize">'
 
                     +'<label class="konturMatrixCalc--matrixCheckbox">'
                         +'<input '
@@ -747,29 +772,17 @@ if (module) {
         _containerId          = 'konturMatrixCalc',
         _container            = null,
 
-        _calculateButtonId    = 'konturMatrixCalc--calculateButton',
-            
-        _clearButtonId        = 'konturMatrixCalc--button-clear',
-
-        _swapButtonId         = 'konturMatrixCalc--button-swap',
-
-        _matrixARadioId       = 'kontruMatrixCalc--matrixCheckbox-matrix-A',
-
-        _matrixBRadioId       = 'kontruMatrixCalc--matrixCheckbox-matrix-B',
-
-        _addRowButtonId       = 'konturMatrixCalc--button-addRow',
-
-        _deleteRowButtonId    = 'konturMatrixCalc--button-deleteRow',
-
-        _addColumnButtonId    = 'konturMatrixCalc--button-addColumn',
-
-        _deleteColumnButtonId = 'konturMatrixCalc--button-deleteColumn';
+        _toolsPanelId         = 'konturMatrixCalc--toolsPanel',
+        _toolsPanelContainer  = null;
 
     /**
      * init
      *
-     * Находим #konturMatrixCalc в DOM и
-     * сохраняем на него ссылку
+     * Находим #konturMatrixCalc в DOM и сохраняем на него ссылку
+     *
+     * отрисовываем интерфейс konturMatrixCalc
+     *
+     * находим #konturMatrixCalc--toolsPanel в DOM и сохраняем на него ссылку
      * 
      * @public
      */
@@ -777,6 +790,9 @@ if (module) {
 
         _container = document.getElementById(_containerId);
         _container.innerHTML =  _interfaceTemplate();
+
+
+        _toolsPanelContainer = document.getElementById(_toolsPanelId);
     };
 
     /**
@@ -790,6 +806,24 @@ if (module) {
         return _container;
     };
 
+    /**
+     * changeToolsPanelState
+     *
+     * @public
+     * @param {int} - id состояниия - 0 - обычное, 1 - ввод данных, 2 - ошбика
+     */
+    var changeToolsPanelState = function(stateId) {
+
+        var state =  [
+
+            'konturMatrixCalc--toolsPanel konturMatrixCalc--toolsPanel-state-normal',
+            'konturMatrixCalc--toolsPanel konturMatrixCalc--toolsPanel-state-input',
+            'konturMatrixCalc--toolsPanel konturMatrixCalc--toolsPanel-state-error'
+        ];
+
+        _toolsPanelContainer.className = state[stateId];
+    };
+
     
     ////////////////////////////////////////////////////////////////////////////
     // EXPORT
@@ -798,7 +832,8 @@ if (module) {
     KONTUR_MATRIX_CALC.view.konturMatrixCalcView = {
         
         init: init,
-        getContainer: getContainer
+        getContainer: getContainer, 
+        changeToolsPanelState: changeToolsPanelState
     };
 
     // unit-testing stuff
@@ -838,13 +873,23 @@ if (module) {
 
     'use strict';
  
+    /** @public */
+    var 
+        MATRIX_A_ID = 'konturMatrixCalc--matrix-A',
+        MATRIX_B_ID = 'konturMatrixCalc--matrix-B',
+        MATRIX_R_ID = 'konturMatrixCalc--matrix-R';
+
     /** @private */
     var 
 
         _matrixTemplate       = KONTUR_MATRIX_CALC.view.templates.matrix, 
 
         _containerId          = 'konturMatrixCalc--matrixPanel',
-        _container            = null;
+        _container            = null,
+            
+        _matrixA              = null,
+        _matrixB              = null,
+        _matrixR              = null;
 
 
 
@@ -856,22 +901,294 @@ if (module) {
      * сохраняем на него ссылку
      * 
      * рисуем стартовые матрицы
+     *
+     * получаем на них ссылки
      * 
      * @public
      */
-    var init = function() {
+    var init = function(rows, columns) {
 
         _container = document.getElementById(_containerId);
-        
+
+        _initStartMatrix();
+    };
+
+    /** @private */
+    var _initStartMatrix = function() {
+   
         var matrix  = _matrixTemplate.clearMatrix('R');
             matrix += _matrixTemplate.clearMatrix('A');
             matrix += _matrixTemplate.clearMatrix('B');
-            
         _container.innerHTML = matrix;  
-    };
 
+        _matrixA = document.getElementById(MATRIX_A_ID);
+        _matrixB = document.getElementById(MATRIX_B_ID);
+        _matrixR = document.getElementById(MATRIX_R_ID);
+
+    };
+    
+    /** 
+     * printMatrixFromModel
+     * 
+     * @public
+     * @param matrixId - {int} - 0: _matrixA, 1: _matrixB, 2: _matrixR
+     * @param model {Matrix} object
+     */
+     var printMatrixFromModel = function(matrixId, model) {
+		
+		var matrixContainer = _getMatrixContainer(matrixId);
+		
+		var rows     = model.getSize().rows;
+		var columns  = model.getSize().columns;		
+		var values   = model.getValues();
+		var disabled = _getDisabledStatus(matrixId);
+		
+		var matrix = '';
+		
+		for (var i=0; i<rows; i++) {
+			
+			matrix += _matrixTemplate.matrixRow({row:i, columns: columns, values: values[i], disabled: disabled});
+		};	
+		
+		matrixContainer.innerHTML = matrix;	 
+	 };
+	 
+	 /** @private */
+	 var _getMatrixContainer = function(id) {
+		
+		if (id === 0) {
+			
+			return _matrixA;
+			
+		} else if (id== 1) {
+			
+			return _matrixB;
+			
+		} else if (id== 2) {
+			
+			return _matrixR;			
+		}
+		
+		return null; 
+	 };
+	 
+	 /** @private */
+	 var _getDisabledStatus = function(id) {
+		 
+		 if (id === 2) {
+			 
+			 return 'disabled'
+		 } 
+		 
+		 return '';
+	 };
+  
 
     /**
+     * pushRowToMatrixA
+     *
+     * @public
+     */
+    var pushRowToMatrixA = function() {
+			
+		var data  = {
+			
+			row: _matrixA.children[0].rows.length,
+			columns: _matrixA.children[0].rows[0].cells.length,
+			disabled: ''
+		};
+			
+		_matrixA.children[0]
+			.insertAdjacentHTML(
+				'beforeEnd', 
+				_matrixTemplate.matrixRow(data));
+		
+		_pushRowToMatrixR();
+    };
+
+    /**
+     * pushRowToMatrixB
+     *
+     * @public
+     */
+    var pushRowToMatrixB = function() {
+			
+		var data  = {
+			
+			row: _matrixB.children[0].rows.length,
+			columns: _matrixB.children[0].rows[0].cells.length,
+			disabled: ''
+		};
+       
+        _matrixB.children[0]
+            .insertAdjacentHTML(
+				'beforeEnd', 
+				_matrixTemplate.matrixRow(data)); 
+    };
+
+    /** @private */
+    var _pushRowToMatrixR = function(data) {
+		
+        // значит запускаем не первый раз
+        if (data === undefined) {
+			
+			var data  = {
+			
+				row: _matrixR.children[0].rows.length,
+				columns: _matrixR.children[0].rows[0].cells.length
+			};
+		};
+		
+		data.disabled = 'disabled';		
+        
+        _matrixR.children[0]
+			.insertAdjacentHTML(
+				'beforeEnd', 
+				_matrixTemplate.matrixRow(data)); 
+    };
+
+    /**
+     * popRowFromMatrixA
+     *
+     * @public
+     */
+    var popRowFromMatrixA = function() {
+        
+        _matrixA.children[0].lastElementChild.remove();
+
+        _popRowFromMatrixR();
+    };
+
+    /**
+     * popRowFromMatrixB
+     *
+     * @public
+     */
+    var popRowFromMatrixB = function() {
+        
+        _matrixB.children[0].lastElementChild.remove();
+    };
+
+    /** @private */
+    var _popRowFromMatrixR = function() {
+        
+        _matrixR.children[0].lastElementChild.remove();
+    };
+
+    /** pushColumnToMatrixA
+     *
+     * @public
+     */
+    var pushColumnToMatrixA = function() {
+
+        var rows = _matrixA.children[0].rows.length;
+        var columns = _matrixA.children[0].rows[0].cells.length;
+
+        for (var i=0; i<rows; i++) {
+ 
+            var data = {
+
+                row: i,
+                column: columns,
+                disabled: ''
+            };
+
+            _matrixA.rows[i].insertAdjacentHTML(
+                    'beforeEnd', 
+                    _matrixTemplate.matrixColumn(data)); 
+        };
+    };
+
+    /** pushColumnToMatrixB
+     *
+     * @public
+     */
+    var pushColumnToMatrixB = function() {
+
+        var rows = _matrixB.children[0].rows.length;
+        var columns = _matrixB.children[0].rows[0].cells.length;
+
+        for (var i=0; i<rows; i++) {
+ 
+            var data = {
+
+                row: i,
+                column: columns,
+                disabled: ''
+            };
+
+            _matrixB.rows[i].insertAdjacentHTML(
+                    'beforeEnd', 
+                    _matrixTemplate.matrixColumn(data)); 
+        };
+        
+        _pushColumnToMatrixR();
+    };
+
+    /** @private*/
+    var _pushColumnToMatrixR = function() {
+		
+		var rows = _matrixR.children[0].rows.length;
+        var columns = _matrixR.children[0].rows[0].cells.length;
+
+        for (var i=0; i<rows; i++) {
+ 
+            var data = {
+
+                row: i,
+                column: columns,
+                disabled: 'disabled'
+            };
+
+            _matrixR.rows[i].insertAdjacentHTML(
+                    'beforeEnd', 
+                    _matrixTemplate.matrixColumn(data)); 
+        };
+    };
+
+    /** popColumnFromMatrixA
+     *
+     * @public
+     */
+    var popColumnFromMatrixA = function() {
+		
+        var rows = _matrixA.children[0].rows.length;
+
+        for (var i=0; i<rows; i++) {
+			
+			_matrixA.rows[i].lastElementChild.remove();		
+        };		
+
+    };
+
+    /** popColumnFromMatrixB
+     *
+     * @public
+     */
+    var popColumnFromMatrixB = function() {
+
+        var rows = _matrixB.children[0].rows.length;
+
+        for (var i=0; i<rows; i++) {
+			
+			_matrixB.rows[i].lastElementChild.remove();		
+        };	
+        
+        _popColumnFromMatrixR();
+    };
+
+    /** @private*/
+    var _popColumnFromMatrixR = function() {
+		
+		var rows = _matrixR.children[0].rows.length;
+
+        for (var i=0; i<rows; i++) {
+			
+			_matrixR.rows[i].lastElementChild.remove();		
+        };			
+    };
+
+	/**
      * getContainer
      *
      * @public
@@ -889,7 +1206,25 @@ if (module) {
 
     KONTUR_MATRIX_CALC.view.matrixView = {
         
+        MATRIX_A_ID: MATRIX_A_ID,
+        MATRIX_B_ID: MATRIX_B_ID,
+        MATRIX_R_ID: MATRIX_R_ID,
+
         init: init,
+        printMatrixFromModel: printMatrixFromModel,
+        
+        pushRowToMatrixA: pushRowToMatrixA,
+        pushRowToMatrixB: pushRowToMatrixB,
+
+        popRowFromMatrixA: popRowFromMatrixA,
+        popRowFromMatrixB: popRowFromMatrixB,
+
+        pushColumnToMatrixA: pushColumnToMatrixA,
+        pushColumnToMatrixB: pushColumnToMatrixB,
+
+        popColumnFromMatrixA: popColumnFromMatrixA,
+        popColumnFromMatrixB: popColumnFromMatrixB,
+        
         getContainer: getContainer
     };
 
@@ -908,11 +1243,418 @@ if (module) {
 // will be deleted in RELEASE build
 // uglifyjs --define module=false bundle.js -c
 if (module) {
+    
+    var KONTUR_MATRIX_CALC = require('../KONTUR_MATRIX_CALC.js');
+};
+
+/**
+ * matrixSizeView
+ * 
+ * модуль matrixSizeView,
+ * 
+ * Необходим для управления представлением,
+ * которое отображает кнопки управления размером матриц
+ *
+ * @version 1.0.0
+ * @author idbolshakov@gmail.com
+ */
+(function(KONTUR_MATRIX_CALC) {
+
+    'use strict';
+    
+    /** @public */
+    var       
+        ADD_ROW_BUTTON_ID       = 'konturMatrixCalc--button-addRow',
+        
+        DELETE_ROW_BUTTON_ID    = 'konturMatrixCalc--button-deleteRow',
+        
+        ADD_COLUMN_BUTTON_ID    = 'konturMatrixCalc--button-addColumn',
+        
+        DELETE_COLUMN_BUTTON_ID = 'konturMatrixCalc--button-deleteColumn',
+        
+        MATRIX_A_ID             = 0,
+        MATRIX_B_ID             = 1;
+		
+     
+    /** @private */
+    var 
+
+        _containerId          = 'konturMatrixCalc--functionalSection-section-matrixSize',
+        _container            = null,
+        
+        _matrixARadioId       = 'kontruMatrixCalc--matrixCheckbox-matrix-A',
+        _matrixARadio         = null,
+        
+        _matrixBRadioId       = 'kontruMatrixCalc--matrixCheckbox-matrix-B',
+        _matrixBRadio         = null,
+        
+        _addRowButton         = null,
+        _deleteRowButton      = null,
+        _addColumnButton      = null,
+        _deleteColumnButton   = null;    
+
+
+
+    /**
+     * init
+     *
+     * находим родительский контейнер, чьи события будем обрабатывать
+     * В DOM и сохраняем на него ссылку
+     * 
+     * также получаем объекты - radio кнопки матриц и кнопки изменения
+     * размера
+     *
+     * 
+     * @public
+     */
+    var init = function() {
+
+        _container = document.getElementById(_containerId);
+        
+        _matrixARadio = document.getElementById(_matrixARadioId);
+        _matrixBRadio = document.getElementById(_matrixBRadioId);
+        
+        _addRowButton = document.getElementById(ADD_ROW_BUTTON_ID);
+        _deleteRowButton = document.getElementById(DELETE_ROW_BUTTON_ID);
+        
+        _addColumnButton = document.getElementById(ADD_COLUMN_BUTTON_ID);
+        _deleteColumnButton = document.getElementById(DELETE_COLUMN_BUTTON_ID);
+
+    };
+
+    /**
+     * getContainer
+     *
+     * @public
+     * @return - DOM контейнер konturMatrixCalc блока
+     */
+    var getContainer = function() {
+
+        return _container;
+    };
+    
+    /**
+     * getCheckedMatrixId
+     *
+     * @public
+     * @return - {int} - 0 - если выбрана матрица А, 1 - если Б
+     */
+    var getCheckedMatrixId = function() {
+
+        if (_matrixARadio.checked) {
+
+			return MATRIX_A_ID;
+		}
+		
+		return MATRIX_B_ID;
+    };   
+    
+    /**
+     * enableAddRowButton
+     * 
+     * @public
+     */
+     var enableAddRowButton = function() {
+		
+		_addRowButton.disabled = false; 
+	 }; 
+    
+    /**
+     * disableAddRowButton
+     * 
+     * @public
+     */
+     var disableAddRowButton = function() {
+		
+		_addRowButton.disabled = true; 
+	 }; 
+	 
+    /**
+     * enableDeleteRowButton
+     * 
+     * @public
+     */
+     var enableDeleteRowButton = function() {
+		
+		_deleteRowButton.disabled = false; 
+	 }; 
+    
+    /**
+     * disableDeleteRowButton
+     * 
+     * @public
+     */
+     var disableDeleteRowButton = function() {
+		
+		_deleteRowButton.disabled = true; 
+	 };	    
+	 
+	 
+	 
+    /**
+     * enableAddColumnButton
+     * 
+     * @public
+     */
+     var enableAddColumnButton = function() {
+		
+		_addColumnButton.disabled = false; 
+	 }; 
+    
+    /**
+     * disableAddColumnButton
+     * 
+     * @public
+     */
+     var disableAddColumnButton = function() {
+		
+		_addColumnButton.disabled = true; 
+	 }; 
+	 
+    /**
+     * enableDeleteColumnButton
+     * 
+     * @public
+     */
+     var enableDeleteColumnButton = function() {
+		
+		_deleteColumnButton.disabled = false; 
+	 }; 
+    
+    /**
+     * disableDeleteColumnButton
+     * 
+     * @public
+     */
+     var disableDeleteColumnButton = function() {
+		
+		_deleteColumnButton.disabled = true; 
+	 };	 
+
+
+    ////////////////////////////////////////////////////////////////////////////
+    // EXPORT
+    ////////////////////////////////////////////////////////////////////////////
+
+    KONTUR_MATRIX_CALC.view.matrixSizeView = {
+        
+        init: init,
+        getContainer: getContainer,
+        getCheckedMatrixId: getCheckedMatrixId,
+        enableAddRowButton: enableAddRowButton,
+        disableAddRowButton: disableAddRowButton,
+        enableDeleteRowButton: enableDeleteRowButton,
+        disableDeleteRowButton: disableDeleteRowButton,
+        
+        enableAddColumnButton: enableAddColumnButton,
+        disableAddColumnButton: disableAddColumnButton,
+        enableDeleteColumnButton: enableDeleteColumnButton,
+        disableDeleteColumnButton: disableDeleteColumnButton,        
+
+        ADD_ROW_BUTTON_ID:       ADD_ROW_BUTTON_ID,
+        DELETE_ROW_BUTTON_ID:    DELETE_ROW_BUTTON_ID,
+        ADD_COLUMN_BUTTON_ID:    ADD_COLUMN_BUTTON_ID,
+        DELETE_COLUMN_BUTTON_ID: DELETE_COLUMN_BUTTON_ID,
+        MATRIX_A_ID:             MATRIX_A_ID,
+        MATRIX_B_ID:             MATRIX_B_ID
+    };
+
+    // unit-testing stuff
+    // will be deleted in RELEASE build
+    // uglifyjs --define module=false bundle.js -c
+    if (module) {
+        
+        module.exports = KONTUR_MATRIX_CALC.view.matrixSizeView;
+    };
+
+    return KONTUR_MATRIX_CALC;
+
+})(KONTUR_MATRIX_CALC);
+// unit-testing stuff
+// will be deleted in RELEASE build
+// uglifyjs --define module=false bundle.js -c
+if (module) {
+    ;
+
+    var KONTUR_MATRIX_CALC = require('../KONTUR_MATRIX_CALC.js');
+};
+
+/**
+ * matrixEditView
+ * 
+ * модуль matrixEditView,
+ * 
+ * Необходим для управления представлением,
+ * которое отображает кнопки редактирования матриц
+ *
+ * @version 1.0.0
+ * @author idbolshakov@gmail.com
+ */
+(function(KONTUR_MATRIX_CALC) {
+
+    'use strict';
+    
+    /** @public */
+    var              
+        CLEAR_BUTTON_ID = 'konturMatrixCalc--button-clear',
+        
+        SWAP_BUTTON_ID  = 'konturMatrixCalc--button-swap',
+        
+        CONTAINER_ID     = 'konturMatrixCalc--functionalSection-matrixEdit';
+
+
+		
+     
+    /** @private */
+    var 
+
+        _container    = null,
+        _clearButton  = null,
+        _swapButton   = null;
+  
+  
+    /**
+     * init
+     * 
+     * @public
+     */
+    var init = function() {
+
+        _container   = document.getElementById(CONTAINER_ID);
+        
+        _clearButton = document.getElementById(CLEAR_BUTTON_ID);
+        
+        _swapButton  = document.getElementById(SWAP_BUTTON_ID);
+    };
+
+    /**
+     * getContainer
+     *
+     * @public
+     * @return - DOM контейнер matrixEditView 
+     */
+    var getContainer = function() {
+
+        return _container;
+    };
+
+
+    ////////////////////////////////////////////////////////////////////////////
+    // EXPORT
+    ////////////////////////////////////////////////////////////////////////////
+
+    KONTUR_MATRIX_CALC.view.matrixEditView = {
+        
+        init: init,
+        getContainer: getContainer,
+        
+        CLEAR_BUTTON_ID: CLEAR_BUTTON_ID,
+        SWAP_BUTTON_ID: SWAP_BUTTON_ID,
+        CONTAINER_ID: CONTAINER_ID
+    };
+
+    // unit-testing stuff
+    // will be deleted in RELEASE build
+    // uglifyjs --define module=false bundle.js -c
+    if (module) {
+        
+        module.exports = KONTUR_MATRIX_CALC.view.matrixEditView;
+    };
+
+    return KONTUR_MATRIX_CALC;
+
+})(KONTUR_MATRIX_CALC);
+// unit-testing stuff
+// will be deleted in RELEASE build
+// uglifyjs --define module=false bundle.js -c
+if (module) {
+    ;
+
+    var KONTUR_MATRIX_CALC = require('../KONTUR_MATRIX_CALC.js');
+};
+
+/**
+ * matrixCalcView
+ * 
+ * модуль matrixEditView,
+ * 
+ * Необходим для управления представлением,
+ * которое отображает кнопку умножения матриц
+ *
+ * @version 1.0.0
+ * @author idbolshakov@gmail.com
+ */
+(function(KONTUR_MATRIX_CALC) {
+
+    'use strict';
+    
+    /** @public */
+    var              
+        CALC_BUTTON_ID  = 'konturMatrixCalc--calculateButton';
+
+
+		
+     
+    /** @private */
+    var _calcButton  = null;
+  
+  
+    /**
+     * init
+     * 
+     * @public
+     */
+    var init = function() {
+
+        _calcButton = document.getElementById(CALC_BUTTON_ID);
+    };
+
+    /**
+     * getCalcButton
+     *
+     * @public
+     * @return - DOM контейнер кнопки 
+     */
+    var getCalcButton = function() {
+
+        return _calcButton;
+    };
+
+
+    ////////////////////////////////////////////////////////////////////////////
+    // EXPORT
+    ////////////////////////////////////////////////////////////////////////////
+
+    KONTUR_MATRIX_CALC.view.matrixCalcView = {
+        
+        init: init,
+        getCalcButton: getCalcButton,
+        
+        CALC_BUTTON_ID: CALC_BUTTON_ID
+    };
+
+    // unit-testing stuff
+    // will be deleted in RELEASE build
+    // uglifyjs --define module=false bundle.js -c
+    if (module) {
+        
+        module.exports = KONTUR_MATRIX_CALC.view.matrixCalcView;
+    };
+
+    return KONTUR_MATRIX_CALC;
+
+})(KONTUR_MATRIX_CALC);
+// unit-testing stuff
+// will be deleted in RELEASE build
+// uglifyjs --define module=false bundle.js -c
+if (module) {
 
     var KONTUR_MATRIX_CALC = require('../KONTUR_MATRIX_CALC.js');
 
     KONTUR_MATRIX_CALC.view.kontruMatrixCalcView = require('./konturMatrixCalcView.js');
     KONTUR_MATRIX_CALC.view.matrixView = require('./matrixView.js');
+    KONTUR_MATRIX_CALC.view.matrixSizeView = require('./matrixSizeView.js');
+    KONTUR_MATRIX_CALC.view.matrixCalcView = require('./matrixCalcView.js');
 };
 
 /**
@@ -932,7 +1674,10 @@ if (module) {
     /** @import */
     var
         _konturMatrixCalcView = KONTUR_MATRIX_CALC.view.konturMatrixCalcView,
-        _matrixView           = KONTUR_MATRIX_CALC.view.matrixView;
+        _matrixView           = KONTUR_MATRIX_CALC.view.matrixView,
+        _matrixSizeView       = KONTUR_MATRIX_CALC.view.matrixSizeView,
+        _matrixEditView       = KONTUR_MATRIX_CALC.view.matrixEditView,
+        _matrixCalcView       = KONTUR_MATRIX_CALC.view.matrixCalcView;
 
 
     /** 
@@ -955,7 +1700,6 @@ if (module) {
         return _konturMatrixCalcView;
     };
 
-
     /**
      *  getMatrixView
      *
@@ -967,6 +1711,40 @@ if (module) {
         return _matrixView;
     };
 
+    /**
+     *  getMatrixSizeView
+     *
+     *  @public
+     *  @return {object}
+     */
+    var getMatrixSizeView = function() {
+
+        return _matrixSizeView;
+    };
+    
+    /**
+     *  getMatrixEditView
+     *
+     *  @public
+     *  @return {object}
+     */
+    var getMatrixEditView = function() {
+
+        return _matrixEditView;
+    }; 
+    
+    /**
+     *  getMatrixEditView
+     *
+     *  @public
+     *  @return {object}
+     */
+    var getMatrixCalcView = function() {
+
+        return _matrixCalcView;
+    };        
+
+
 
     ////////////////////////////////////////////////////////////////////////////
     // EXPORT
@@ -976,7 +1754,10 @@ if (module) {
 
         init: init,
         getKonturMatrixCalcView: getKonturMatrixCalcView,
-        getMatrixView: getMatrixView
+        getMatrixView: getMatrixView,
+        getMatrixSizeView: getMatrixSizeView,
+        getMatrixEditView: getMatrixEditView,
+        getMatrixCalcView: getMatrixCalcView
 	};
 
     // unit-testing stuff
@@ -1029,7 +1810,7 @@ if (module) {
         _model = model;
         _view  = view;
 
-        _view.init();
+        _view.getKonturMatrixCalcView().init();
     };
     ////////////////////////////////////////////////////////////////////////////
     // EXPORT
@@ -1082,6 +1863,8 @@ if (module) {
      *
      * получаем ссылки на модель и представление
      * создаем матрицы в модели и отрисовываем матрицы в представлении
+     *
+     * регистрируем обработчики событий
      * 
      * @public
      */
@@ -1091,8 +1874,133 @@ if (module) {
         _view  = view;
 
         _model.init();
-        _view.init();
+        _view.getMatrixView().init();
+        
+        _view.getMatrixView().printMatrixFromModel(0, _model.getMatrixA());
+        _view.getMatrixView().printMatrixFromModel(1, _model.getMatrixA());
+        _view.getMatrixView().printMatrixFromModel(2, _model.getMatrixA());
+
+        _addEventsListeners(_view.getMatrixView().getContainer());
     };
+
+    /** @private **/
+    var _addEventsListeners = function(container) {
+
+        // в матрице изменили значение элемента
+        container.addEventListener('change', _onChange); 
+
+        // элемент матрицы получил фокус
+ 
+        // элемент матрицы потерял фокус
+        container.addEventListener('focus', _onFocus, true);
+        container.addEventListener('blur',  _onBlur, true);
+    };
+
+    /** @private */
+    var _onChange = function(e) {
+
+        var row, column, matrix, value, info;
+
+        info =  _getChangedCellInfo(e.target);
+
+        row      = info.row;
+        column   = info.column;
+        matrix   = info.matrix;
+        value    = info.value;
+
+        if (_isValueValid(matrix, value)) {
+
+           matrix.setValue(row, column, value); 
+
+        } else {
+            
+            // устанавливаем предыдущее значение или пустую строку если
+            // предыдущего значение null
+            e.target.value = matrix.getValues()[row][column] || '';
+        };
+    };
+
+    /** @private */
+    var _getChangedCellInfo = function(target) {
+        
+        return {
+
+            row:    target.dataset.row,
+            column: target.dataset.column,
+
+            matrix: _getMatrix(target),
+            value:  _getValue(target)
+        };
+    };
+
+    /** @private */
+    var _getMatrix = function(target) {
+        
+        var matrix = null;
+
+        var id = target.parentElement
+                       .parentElement
+                       .parentElement
+                       .parentElement.id;
+        
+        if (id === _view.getMatrixView().MATRIX_A_ID) {
+
+            matrix = _model.getMatrixA();
+
+        } else if (id === _view.getMatrixView().MATRIX_B_ID) {
+
+            matrix = _model.getMatrixB();
+        };
+
+        return matrix;
+    };
+
+    /** @private */
+    var _getValue = function(target) {
+
+       var value = target.value;
+
+        if (value === '') {
+
+            value = null;
+
+        } else {
+            
+            value = Number.parseInt(value, 10);
+        };
+
+        return value;
+    };
+
+    /** @private */
+    var _isValueValid = function(matrix, value) {
+
+        var 
+            min_value = matrix.MIN_VALUE,
+            max_value = matrix.MAX_VALUE;
+
+        if ((value >= min_value && value <= max_value) || 
+            (value === null) ) {
+
+            return true;
+        };
+
+        return false;
+    };
+
+    /** @private */
+    var _onFocus = function(e) {
+
+        _view.getKonturMatrixCalcView().changeToolsPanelState(1);
+    };
+    /** @private */
+    var _onBlur = function(e) {
+
+        _view.getKonturMatrixCalcView().changeToolsPanelState(0);
+    };
+
+
+
     ////////////////////////////////////////////////////////////////////////////
     // EXPORT
     ////////////////////////////////////////////////////////////////////////////
@@ -1108,6 +2016,434 @@ if (module) {
     if (module) {
         
         module.exports = KONTUR_MATRIX_CALC.controller.matrixController;
+    };
+
+    return KONTUR_MATRIX_CALC;
+
+})(KONTUR_MATRIX_CALC);
+// unit-testing stuff
+// will be deleted in RELEASE build
+// uglifyjs --define module=false bundle.js -c
+if (module) {
+
+    var KONTUR_MATRIX_CALC = require('../KONTUR_MATRIX_CALC.js');
+};
+
+/**
+ * matrixSizeController
+ * 
+ * модуль matrixSizeController,
+ * необходим для управления размерами матриц
+ * 
+ * @version 1.0.0
+ * @author idbolshakov@gmail.com
+ */
+(function(KONTUR_MATRIX_CALC) {
+
+    'use strict';
+
+    var 
+        _model = null,
+        _view  = null;
+
+   /**
+     * init
+     *
+     * получаем ссылки на модель и представление
+     * 
+     * находим нужные нам кнопки в DOM (с помощью которых
+     * будем управлять размерами матриц)
+     *
+     * регистрируем обработчики событий
+     * 
+     * @public
+     */
+    var init = function(model, view) {
+
+        _model = model;
+        _view  = view;
+
+        _view.getMatrixSizeView().init();
+        
+        _view.getMatrixSizeView().disableDeleteRowButton();
+        _view.getMatrixSizeView().disableDeleteColumnButton();
+
+        _addEventsListeners(_view.getMatrixSizeView().getContainer());
+    };
+
+    /** @private **/
+    var _addEventsListeners = function(container) {
+  
+        // клик по контролу, управляющему размером матриц
+        container.addEventListener('click', _onClick);
+        
+        // изменение radio button, отвечающего за выбор матрицы
+        container.addEventListener('change', _onChange);        
+    };
+
+    /** @private */
+    var _onClick = function(e) {
+               
+        if ( _clickOnButtons(e.target.id) ) {
+
+            _performChangedSizeAction(
+                    e.target.id,
+                    _view.getMatrixSizeView(),
+                    _getMatrixAndChangedSizeMethods());
+        };
+    };
+
+    /** @private */
+    var _clickOnButtons = function(clickedId) {
+
+        var matrixSizeView = _view.getMatrixSizeView();
+
+        if ( (clickedId === matrixSizeView.ADD_ROW_BUTTON_ID)      ||
+             (clickedId === matrixSizeView.DELETE_ROW_BUTTON_ID)   ||
+             (clickedId === matrixSizeView.ADD_COLUMN_BUTTON_ID)   ||
+             (clickedId === matrixSizeView.DELETE_COLUMN_BUTTON_ID)
+           ) {
+
+            return true;
+        }
+
+        return false;
+    };
+
+
+    /** @private */
+    var _getMatrixAndChangedSizeMethods = function() {
+
+        var matrixSizeView = _view.getMatrixSizeView();
+        var matrixView     = _view.getMatrixView();
+        
+        if (matrixSizeView.getCheckedMatrixId() === matrixSizeView.MATRIX_A_ID) {
+
+            return {
+
+                matrix     : _model.getMatrixA(),
+                pushRow    : matrixView.pushRowToMatrixA,
+                popRow     : matrixView.popRowFromMatrixA,
+                pushColumn : matrixView.pushColumnToMatrixA,
+                popColumn  : matrixView.popColumnFromMatrixA
+            };
+        };
+
+        return {
+
+                matrix     : _model.getMatrixB(),
+                pushRow    : matrixView.pushRowToMatrixB,
+                popRow     : matrixView.popRowFromMatrixB,
+                pushColumn : matrixView.pushColumnToMatrixB,
+                popColumn  : matrixView.popColumnFromMatrixB
+        };
+    };
+
+    /** @private */
+    var _performChangedSizeAction = function(id, view, methods) {
+
+		var matrix  = methods.matrix,
+			rows    = matrix.getSize().rows,
+			columns = matrix.getSize().columns;
+		        
+        switch(id) {
+
+            case view.ADD_ROW_BUTTON_ID:
+            
+				if (rows+1 <= matrix.MAX_SIZE) {
+					
+					matrix.pushRow();
+					methods.pushRow();  					
+				};
+
+            break;
+
+            case view.DELETE_ROW_BUTTON_ID:
+
+                if (rows-1 >= matrix.MIN_SIZE) {
+				
+					matrix.popRow();
+					methods.popRow();  
+				}
+				
+            break;
+
+            case view.ADD_COLUMN_BUTTON_ID:
+            
+                if (columns+1 <= matrix.MAX_SIZE) {            
+
+					matrix.pushColumn();
+					methods.pushColumn();     
+				};        
+
+            break;
+
+            case view.DELETE_COLUMN_BUTTON_ID:
+            
+				if (columns-1 >= matrix.MIN_SIZE) {
+            
+            
+					methods.matrix.popColumn();	
+					methods.popColumn();   
+				};             
+                			
+            break;
+        };
+        
+        _checkMatrixSizeBorders();
+    };
+    
+    /** @private */
+    var _checkMatrixSizeBorders = function() {
+		
+		var view   = _view.getMatrixSizeView();
+		var matrix = _getCheckedMatrix(view);
+
+		// ADD ROW BUTTON
+		if (matrix.getSize().rows >= matrix.MAX_SIZE) {
+			
+			view.disableAddRowButton();
+		} else {
+			
+			view.enableAddRowButton();
+		};
+		
+		// DELETE ROW BUTTON
+		if (matrix.getSize().rows <= matrix.MIN_SIZE) {
+			
+			view.disableDeleteRowButton();
+		} else {
+			
+			view.enableDeleteRowButton();
+		};	
+		
+		// ADD COLUMN BUTTON
+		if (matrix.getSize().columns >= matrix.MAX_SIZE) {
+			
+			view.disableAddColumnButton();
+		} else {
+			
+			view.enableAddColumnButton();
+		};
+		
+		// DELETE COLUMN BUTTON
+		if (matrix.getSize().columns <= matrix.MIN_SIZE) {
+			
+			view.disableDeleteColumnButton();
+		} else {
+			
+			view.enableDeleteColumnButton();
+		};			
+	};
+	
+	/** @private */
+	var _getCheckedMatrix = function(view) {
+		
+		if (view.getCheckedMatrixId() === view.MATRIX_A_ID) {
+			
+			return _model.getMatrixA();
+			
+		} else if (view.getCheckedMatrixId() === view.MATRIX_B_ID) {
+			
+			return _model.getMatrixB();
+			
+		};		
+	};
+	
+	/** @private */
+	var _onChange = function(e) {
+		
+		_checkMatrixSizeBorders();
+	};
+  
+
+
+    ////////////////////////////////////////////////////////////////////////////
+    // EXPORT
+    ////////////////////////////////////////////////////////////////////////////
+
+    KONTUR_MATRIX_CALC.controller.matrixSizeController = {
+        
+        init: init
+    };
+
+    // unit-testing stuff
+    // will be deleted in RELEASE build
+    // uglifyjs --define module=false bundle.js -c
+    if (module) {
+        
+        module.exports = KONTUR_MATRIX_CALC.controller.matrixSizeController;
+    };
+
+    return KONTUR_MATRIX_CALC;
+
+})(KONTUR_MATRIX_CALC);
+// unit-testing stuff
+// will be deleted in RELEASE build
+// uglifyjs --define module=false bundle.js -c
+if (module) {
+
+    var KONTUR_MATRIX_CALC = require('../KONTUR_MATRIX_CALC.js');
+};
+
+/**
+ * matrixEditController
+ * 
+ * модуль matrixEditController,
+ * необходим для управления доп. функционалом калькулятора
+ * 
+ * @version 1.0.0
+ * @author idbolshakov@gmail.com
+ */
+(function(KONTUR_MATRIX_CALC) {
+
+    'use strict';
+
+    var 
+        _model = null,
+        _view  = null;
+
+   /**
+     * init
+     * 
+     * @public
+     */
+    var init = function(model, view) {
+
+        _model = model;
+        _view  = view;
+        
+        _view.getMatrixEditView().init();
+        
+        _addEventsListeners(_view.getMatrixEditView().getContainer());
+    };
+
+    /** @private **/
+    var _addEventsListeners = function(container) {
+  
+        // клик по кнопке в области действия контроллера
+        container.addEventListener('click', _onClick);
+       
+    };
+
+    /** @private */
+    var _onClick = function(e) {
+		
+		var view = _view.getMatrixEditView();
+
+		if (e.target.id === view.CLEAR_BUTTON_ID) {
+			
+			_clearButtonClickHandler();
+			
+		} else if (e.target.id === view.SWAP_BUTTON_ID) {
+			
+			_swapButtonClickHandler();
+		};
+    };
+    
+    /** @private */
+    var _clearButtonClickHandler = function() {
+		
+		alert('clear');
+	};
+	
+	/** @private */
+	var _swapButtonClickHandler = function() {
+	
+		alert('swap');
+	};
+
+
+    ////////////////////////////////////////////////////////////////////////////
+    // EXPORT
+    ////////////////////////////////////////////////////////////////////////////
+
+    KONTUR_MATRIX_CALC.controller.matrixEditController = {
+        
+        init: init
+    };
+
+    // unit-testing stuff
+    // will be deleted in RELEASE build
+    // uglifyjs --define module=false bundle.js -c
+    if (module) {
+        
+        module.exports = KONTUR_MATRIX_CALC.controller.matrixEditController;
+    };
+
+    return KONTUR_MATRIX_CALC;
+
+})(KONTUR_MATRIX_CALC);
+// unit-testing stuff
+// will be deleted in RELEASE build
+// uglifyjs --define module=false bundle.js -c
+if (module) {
+
+    var KONTUR_MATRIX_CALC = require('../KONTUR_MATRIX_CALC.js');
+};
+
+/**
+ * matrixCalcController
+ * 
+ * модуль matrixEditController,
+ * необходим для управления кпнокой умножения матриц
+ * 
+ * @version 1.0.0
+ * @author idbolshakov@gmail.com
+ */
+(function(KONTUR_MATRIX_CALC) {
+
+    'use strict';
+
+    var 
+        _model = null,
+        _view  = null;
+
+   /**
+     * init
+     * 
+     * @public
+     */
+    var init = function(model, view) {
+
+        _model = model;
+        _view  = view;
+
+        _view.getMatrixCalcView().init();
+          
+        _addEventsListeners(_view.getMatrixCalcView().getCalcButton());
+    };
+
+    /** @private **/
+    var _addEventsListeners = function(container) {
+
+        // клик по кнопке в области действия контроллера
+        container.addEventListener('click', _onClick);
+       
+    };
+
+    /** @private */
+    var _onClick = function(e) {
+		
+		alert('click calc button');
+    };
+
+
+    ////////////////////////////////////////////////////////////////////////////
+    // EXPORT
+    ////////////////////////////////////////////////////////////////////////////
+
+    KONTUR_MATRIX_CALC.controller.matrixCalcController = {
+        
+        init: init
+    };
+
+    // unit-testing stuff
+    // will be deleted in RELEASE build
+    // uglifyjs --define module=false bundle.js -c
+    if (module) {
+        
+        module.exports = KONTUR_MATRIX_CALC.controller.matrixCalcController;
     };
 
     return KONTUR_MATRIX_CALC;
@@ -1137,7 +2473,10 @@ if (module) {
        _model = KONTUR_MATRIX_CALC.model, 
 
        _konturMatrixCalcController = KONTUR_MATRIX_CALC.controller.konturMatrixCalcController;
-       _matrixController           = KONTUR_MATRIX_CALC.controller.matrixController;
+       _matrixController           = KONTUR_MATRIX_CALC.controller.matrixController,
+       _matrixSizeController       = KONTUR_MATRIX_CALC.controller.matrixSizeController,
+       _matrixEditController       = KONTUR_MATRIX_CALC.controller.matrixEditController,
+       _matrixCalcController       = KONTUR_MATRIX_CALC.controller.matrixCalcController;
 
 
 
@@ -1150,8 +2489,15 @@ if (module) {
      */
     var init = function() {
 
-        _konturMatrixCalcController.init(_model, _view.getKonturMatrixCalcView());
-        _matrixController.init(_model, _view.getMatrixView());
+        _konturMatrixCalcController.init(_model, _view);
+
+        _matrixController.init(_model, _view);
+
+        _matrixSizeController.init(_model, _view);
+        
+        _matrixEditController.init(_model, _view);
+        
+        _matrixCalcController.init(_model, _view);
     };
 
     /** @event */

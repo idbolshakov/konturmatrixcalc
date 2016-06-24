@@ -39,6 +39,18 @@ describe('Templates', function() {
 
                assert.equal('function', typeof matrix.clearMatrix);
            });
+
+           it('Should contain the matrixRow method', function() {
+
+               assert.equal('function', typeof matrix.matrixRow);
+           });
+
+           it('Should contain the matrixColumn method', function() {
+
+               assert.equal('function', typeof matrix.matrixColumn);
+           });
+
+
        }); 
 
        describe('clearMatrix method', function() {
@@ -64,5 +76,32 @@ describe('Templates', function() {
            });
 
        });
+
+       describe('matrixRow method', function() {
+           
+           it('Should received an {object}', function() {
+
+               matrix.matrixRow({});
+           });
+
+           it('Should return a {string}', function () {
+
+               assert.equal('string', typeof matrix.matrixRow({}));
+           });
+       });
+       
+       describe('matrixColumn method', function() {
+           
+           it('Should received an {object}', function() {
+
+               matrix.matrixColumn({});
+           });
+
+           it('Should return a {string}', function () {
+
+               assert.equal('string', typeof matrix.matrixColumn({}));
+           });
+       });
+
     });
 });

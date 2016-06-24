@@ -22,7 +22,10 @@ if (module) {
        _model = KONTUR_MATRIX_CALC.model, 
 
        _konturMatrixCalcController = KONTUR_MATRIX_CALC.controller.konturMatrixCalcController;
-       _matrixController           = KONTUR_MATRIX_CALC.controller.matrixController;
+       _matrixController           = KONTUR_MATRIX_CALC.controller.matrixController,
+       _matrixSizeController       = KONTUR_MATRIX_CALC.controller.matrixSizeController,
+       _matrixEditController       = KONTUR_MATRIX_CALC.controller.matrixEditController,
+       _matrixCalcController       = KONTUR_MATRIX_CALC.controller.matrixCalcController;
 
 
 
@@ -35,8 +38,15 @@ if (module) {
      */
     var init = function() {
 
-        _konturMatrixCalcController.init(_model, _view.getKonturMatrixCalcView());
-        _matrixController.init(_model, _view.getMatrixView());
+        _konturMatrixCalcController.init(_model, _view);
+
+        _matrixController.init(_model, _view);
+
+        _matrixSizeController.init(_model, _view);
+        
+        _matrixEditController.init(_model, _view);
+        
+        _matrixCalcController.init(_model, _view);
     };
 
     /** @event */

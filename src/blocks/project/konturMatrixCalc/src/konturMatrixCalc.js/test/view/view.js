@@ -34,7 +34,21 @@ describe('view module', function() {
 
             assert.equal('function', typeof view.getMatrixView);
         });
+        
+        it('Should contain the getMatrixSizeView method', function() {
 
+            assert.equal('function', typeof view.getMatrixSizeView);
+        });     
+        
+        it('Should contain the getMatrixEditView method', function() {
+
+            assert.equal('function', typeof view.getMatrixEditView);
+        });     
+        
+        it('Should contain the getMatrixCalcView method', function() {
+
+            assert.equal('function', typeof view.getMatrixCalcView);
+        });                
     });
 
     describe('getKonturMatrixCalcView method', function() {
@@ -52,6 +66,29 @@ describe('view module', function() {
             assert.equal('object', typeof view.getMatrixView());
         });
     });
+    
+    describe('getMatrixSizeView method', function() {
 
+        it('Should return an {object}', function() {
+
+            assert.equal('object', typeof view.getMatrixSizeView());
+        });
+    });    
+    
+    describe('getMatrixEditView method', function() {
+
+        it('Should return an {object}', function() {
+
+            assert.equal('object', typeof view.getMatrixEditView());
+        });
+    });  
+    
+    describe('getMatrixCalcView method', function() {
+
+        it('Should return an {object}', function() {
+
+            assert.equal('object', typeof view.getMatrixCalcView());
+        });
+    });       
 });
 
