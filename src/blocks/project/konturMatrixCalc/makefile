@@ -19,17 +19,36 @@ CSS     = src/konturMatrixCalc.css\
 		  src/--functionalSection/-section/-matrixEdit/konturMatrixCalc--functionalSection-section-matrixEdit.css\
 		  src/--functionalSection/-section/-matrixSize/konturMatrixCalc--functionalSection-section-matrixSize.css\
 		  src/--functionalSection/-section/-errorMessage/konturMatrixCalc--functionalSection-section-errorMessage.css\
+		  src/--calculateButton/konturMatrixCalc--calculateButton.css\
+		  src/--matrixCheckbox/konturMatrixCalc--matrixCheckbox.css\
 		  src/--button/konturMatrixCalc--button.css\
 		  src/--button/-icon/-add/konturMatrixCalc--button-icon-add.css\
 		  src/--button/-icon/-clear/konturMatrixCalc--button-icon-clear.css\
 		  src/--button/-icon/-delete/konturMatrixCalc--button-icon-delete.css\
 		  src/--button/-icon/-swap/konturMatrixCalc--button-icon-swap.css\
-		  src/--matrixPanel/konturMatrixCalc--matrixPanel.css
+		  src/--matrixPanel/konturMatrixCalc--matrixPanel.css\
+		  src/--matrix/konturMatrixCalc--matrix.css
 
-JS      = src/konturMatrixCalc.js/model/Matrix.js\
-		  src/konturMatrixCalc.js/model/MatrixMultiply.js
+JS      = src/konturMatrixCalc.js/KONTUR_MATRIX_CALC.js\
+		  src/konturMatrixCalc.js/model/Matrix.js\
+		  src/konturMatrixCalc.js/model/matrixMultiply.js\
+		  src/konturMatrixCalc.js/model/model.js\
+		  \
+		  src/konturMatrixCalc.js/view/templates/matrix.js\
+		  src/konturMatrixCalc.js/view/templates/konturMatrixCalc.js\
+		  src/konturMatrixCalc.js/view/konturMatrixCalcView.js\
+		  src/konturMatrixCalc.js/view/matrixView.js\
+		  src/konturMatrixCalc.js/view/view.js\
+		  \
+		  src/konturMatrixCalc.js/controller/konturMatrixCalcController.js\
+		  src/konturMatrixCalc.js/controller/matrixController.js\
+		  src/konturMatrixCalc.js/controller/controller.js
 
-SVG     =  
+SVG     = src/--calculateButton/konturMatrixCalc--calculateButton.svg\
+		  src/--button/-icon/-add/konturMatrixCalc--button-icon-add.svg\
+		  src/--button/-icon/-delete/konturMatrixCalc--button-icon-delete.svg\
+		  src/--button/-icon/-clear/konturMatrixCalc--button-icon-clear.svg\
+		  src/--button/-icon/-swap/konturMatrixCalc--button-icon-swap.svg 
 
 PNG     =  
 
@@ -42,6 +61,7 @@ NJK     =
 TARGETS = delete_old_files\
 	      css_merge\
 		  js_merge\
+		  svg_copy\
 		  example_update
 
 ################################################################################

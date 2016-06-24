@@ -1,7 +1,11 @@
 // unit-testing stuff
 // will be deleted in RELEASE build
 // uglifyjs --define module=false bundle.js -c
-if (module) var KONTUR_MATRIX_CALC = {model:{}};
+if (module) {
+
+    var KONTUR_MATRIX_CALC = require('../KONTUR_MATRIX_CALC.js');
+};
+
 
 /**
  * Matrix
@@ -216,9 +220,12 @@ if (module) var KONTUR_MATRIX_CALC = {model:{}};
     // unit-testing stuff
     // will be deleted in RELEASE build
     // uglifyjs --define module=false bundle.js -c
-    if (module) module.exports = KONTUR_MATRIX_CALC.model.Matrix;
+    if (module) {
+        
+        module.exports = Matrix;
+    };
 
     return KONTUR_MATRIX_CALC;
 
-})(KONTUR_MATRIX_CALC || {});
+})(KONTUR_MATRIX_CALC);
 

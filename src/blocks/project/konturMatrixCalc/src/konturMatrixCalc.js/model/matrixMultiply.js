@@ -4,13 +4,13 @@
 if (module) {
     
     var Matrix = require('./Matrix');
-    var KONTUR_MATRIX_CALC = {model:{}};
+    var KONTUR_MATRIX_CALC = require('../KONTUR_MATRIX_CALC.js');
 };
 
 /**
- * MatrixMultiply
+ * matrixMultiply
  * 
- * модуль MatrixMultiply,
+ * модуль matrixMultiply,
  * необходим для умножения двух матриц
  *
  * Умеет:
@@ -31,7 +31,7 @@ if (module) {
         _bRows, _bColumns;
 
     /**
-     * MatrixMultiply
+     * matrixMultiply
      *
      * Функция, принимающая две матрицы и 
      * возвращающая третью матрицу - результат
@@ -42,7 +42,7 @@ if (module) {
      * @param matrixB {Matrix} - вторая матрица
      * @return {Matrix} - произведение matrixA & matrixB
      */
-    function MatrixMultiply(matrixA, matrixB) {
+    function matrixMultiply(matrixA, matrixB) {
 
         _init(matrixA, matrixB);
 
@@ -125,13 +125,16 @@ if (module) {
     // EXPORT
     ////////////////////////////////////////////////////////////////////////////
 
-    KONTUR_MATRIX_CALC.model.MatrixMultiply = MatrixMultiply;
+    KONTUR_MATRIX_CALC.model.matrixMultiply = matrixMultiply;
 
     // unit-testing stuff
     // will be deleted in RELEASE build
     // uglifyjs --define module=false bundle.js -c
-    if (module) module.exports = KONTUR_MATRIX_CALC.model.MatrixMultiply;
+    if (module) {
+        
+        module.exports = matrixMultiply;
+    };
 
     return KONTUR_MATRIX_CALC;
 
-})(KONTUR_MATRIX_CALC || {model:{}});
+})(KONTUR_MATRIX_CALC);

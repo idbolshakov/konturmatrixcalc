@@ -6,6 +6,8 @@
         <link rel="stylesheet" href="bundles/bundle.css">
     </head>
 
+    <script>var module=false;</script>
+
     <body>
 
         <style>
@@ -16,65 +18,12 @@
             }            
 
         </style>
-        <div class="konturMatrixCalc">
-            <div class="konturMatrixCalc--toolsPanel
-                        konturMatrixCalc--toolsPanel-state-normal">
-                
-                <div class="konturMatrixCalc--functionalSection 
-                            konturMatrixCalc--functionalSection-section-matrixCalculate">
 
-                    <button>Умножить матрицы</button>
-                </div>
-
-                <div class="konturMatrixCalc--functionalSection
-                            konturMatrixCalc--functionalSection-section-matrixEdit">
-
-                    <button class="konturMatrixCalc--button
-                                   konturMatrixCalc--button-icon-clear">
-                        Очистить матрицы
-                    </button>
-
-                    <button class="konturMatrixCalc--button
-                                   konturMatrixCalc--button-icon-swap">
-                        Поменять матрицы местами
-                    </button>
-                </div>
-
-                <div class="konturMatrixCalc--functionalSection
-                            konturMatrixCalc--functionalSection--section-matrixSize">
-
-                     <button class="konturMatrixCalc--button
-                                   konturMatrixCalc--button-icon-add">
-                        Добавить
-                    </button>
-
-                    <button class="konturMatrixCalc--button
-                                   konturMatrixCalc--button-icon-delete">
-                        Удалить
-                    </button>
-                    <br>
-                    <button class="konturMatrixCalc--button
-                                   konturMatrixCalc--button-icon-add">
-                        Добавить
-                    </button>
-
-                    <button class="konturMatrixCalc--button
-                                   konturMatrixCalc--button-icon-delete">
-                        Удалить
-                    </button>
-                </div>
-
-                <div class="konturMatrixCalc--functionalSection
-                            konturMatrixCalc--functionalSection--section-errorMessage">
-
-                </div>
-                
-            </div>
-
-            <div class="konturMatrixCalc--matrixPanel">
-            </div>
-        </div>
+        <!-- Start konturMatrixCalc block -->
+        <div id="konturMatrixCalc" class="konturMatrixCalc"></div>
 
         <script src="bundles/bundle.js"></script>
+        <!-- ENd konturMatrixCalc block -->
+
     </body>
 </html>

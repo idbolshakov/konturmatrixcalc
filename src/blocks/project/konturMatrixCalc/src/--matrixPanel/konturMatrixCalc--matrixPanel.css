@@ -5,10 +5,12 @@
 .konturMatrixCalc--matrixPanel {
 
     display: block;
+    box-sizing: border-box;
 
     margin: 0;
-    padding: 0;
+    padding: 40px 0 0 370px;
 
     height: 100%;
+
 }
 

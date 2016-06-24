@@ -1,0 +1,54 @@
+/**
+ * @section konturMatrixCalc
+ * @subsection konturMatrixCalc--calculateButton
+ */
+.konturMatrixCalc--calculateButton {
+
+    display: inline-block;
+
+    margin: 0;
+    padding: 0;
+
+    border: none;
+
+    width: 190px;
+    height: 44px;
+    line-height: 44px;
+
+    background: url('../static/svg/konturMatrixCalc--calculateButton.svg');
+    background-repeat: no-repeat;
+    background-position: 0 0;
+
+
+    color: #fff;
+    font-weight: bold;
+}
+
+.konturMatrixCalc--calculateButton:hover {
+
+    background: url('../static/svg/konturMatrixCalc--calculateButton.svg');
+    background-repeat: no-repeat;
+    background-position: 0 -44px;
+}
+
+.konturMatrixCalc--calculateButton:focus {
+
+    background: url('../static/svg/konturMatrixCalc--calculateButton.svg');
+    background-repeat: no-repeat;
+    background-position: 0 -88px;
+}
+
+.konturMatrixCalc--calculateButton::-moz-focus-inner {border: 0;}
+
+.konturMatrixCalc--calculateButton:active {
+
+    background: url('../static/svg/konturMatrixCalc--calculateButton.svg');
+    background-repeat: no-repeat;
+    background-position: 0 -132px;
+}
+
+.konturMatrixCalc--calculateButton:disabled {
+
+    opacity: .75;
+}
+

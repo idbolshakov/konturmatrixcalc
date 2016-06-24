@@ -4,7 +4,7 @@
 
 var assert         = require('assert');
 
-var MatrixMultiply = require('../../model/MatrixMultiply.js');
+var matrixMultiply = require('../../model/matrixMultiply.js');
 var Matrix         = require('../../model/Matrix.js');
 
 
@@ -12,11 +12,11 @@ var Matrix         = require('../../model/Matrix.js');
 // TESTS
 ////////////////////////////////////////////////////////////////////////////////
 
-describe('MatrixMultiply function', function() {
+describe('matrixMultiply function', function() {
 
     it('Should be a function', function() {
 
-        assert.equal('function', typeof MatrixMultiply);
+        assert.equal('function', typeof matrixMultiply);
     });
 
     it('Should throw error if not receive two {Matrix} objects', function() {
@@ -31,7 +31,7 @@ describe('MatrixMultiply function', function() {
             // Should be:
             // MatrixMultiply(a,b), 
             // where a & b are instance of {Matrix}
-            MatrixMultiply();
+            matrixMultiply();
 
         } catch (e) {
             
@@ -48,7 +48,7 @@ describe('MatrixMultiply function', function() {
 
         var m = new Matrix();
 
-        assert.equal(true, MatrixMultiply(m, m) instanceof Matrix);
+        assert.equal(true, matrixMultiply(m, m) instanceof Matrix);
     });
 
     it('Should return a {null} if matrixA.columns != matrixB.rows', function() {
@@ -56,7 +56,7 @@ describe('MatrixMultiply function', function() {
         var matrixA = new Matrix(4,2);
         var matrixB = new Matrix(5,3);
 
-        assert.strictEqual(null, MatrixMultiply(matrixA, matrixB));
+        assert.strictEqual(null, matrixMultiply(matrixA, matrixB));
     });
 
     it('Returned matrix size should be a matrixA.rows and matrixB.columns', 
@@ -65,7 +65,7 @@ describe('MatrixMultiply function', function() {
         var matrixA = new Matrix(4,2);
         var matrixB = new Matrix(2,3);
 
-        var matrixC = MatrixMultiply(matrixA, matrixB);
+        var matrixC = matrixMultiply(matrixA, matrixB);
 
         assert.strictEqual(matrixA.getSize().rows, matrixC.getSize().rows);
         assert.equal(matrixB.getSize().columns, matrixC.getSize().columns);
@@ -89,7 +89,7 @@ describe('MatrixMultiply function', function() {
         resMatrix.setValue(0, 0, -7);
         resMatrix.setValue(1, 0, 11);
 
-        assert.deepEqual(resMatrix, MatrixMultiply(matrixA, matrixB));
+        assert.deepEqual(resMatrix, matrixMultiply(matrixA, matrixB));
         
         // 2x2 x 2x2
         var matrixA   = new Matrix(2,2);
@@ -111,7 +111,7 @@ describe('MatrixMultiply function', function() {
         resMatrix.setValue(1, 0, 0);
         resMatrix.setValue(1, 1, 0);
 
-        assert.deepEqual(resMatrix, MatrixMultiply(matrixA, matrixB));
+        assert.deepEqual(resMatrix, matrixMultiply(matrixA, matrixB));
 
         // 2x2 x 2x2
         var matrixA   = new Matrix(3,3);
@@ -148,7 +148,7 @@ describe('MatrixMultiply function', function() {
         resMatrix.setValue(2,1, -17);  
         resMatrix.setValue(2,2,  26);  
 
-        assert.deepEqual(resMatrix, MatrixMultiply(matrixA, matrixB));
+        assert.deepEqual(resMatrix, matrixMultiply(matrixA, matrixB));
     });
 });
 

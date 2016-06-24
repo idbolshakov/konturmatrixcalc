@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+
+        <link rel="stylesheet" href="bundles/bundle.css">
+    </head>
+
+    <body>
+
+        <style>
+            html, body {width: 100%; height: 100%; margin: 0; padding: 0;}            
+
+            .konturMatrixCalc {
+                height:100%; 
+            }            
+
+        </style>
+        <div class="konturMatrixCalc">
+            <div class="konturMatrixCalc--toolsPanel
+                        konturMatrixCalc--toolsPanel-state-normal">
+                
+                <div class="konturMatrixCalc--functionalSection 
+                            konturMatrixCalc--functionalSection-section-matrixCalculate">
+
+                    <input 
+                        class="konturMatrixCalc--calculateButton"
+                        type="button"
+                        value="Умножить матрицы">
+                </div>
+
+                <div class="konturMatrixCalc--functionalSection
+                            konturMatrixCalc--functionalSection-section-matrixEdit">
+
+                    <input
+                        type="button"
+                        class="konturMatrixCalc--button konturMatrixCalc--button-icon-clear"
+                        value="Очистить матрицы">
+                    <br>
+                    <input 
+                        type="button"
+                        class="konturMatrixCalc--button konturMatrixCalc--button-icon-swap"
+                        value="Поменять матрицы местами">
+                </div>
+
+                <div class="konturMatrixCalc--functionalSection
+                            konturMatrixCalc--functionalSection-section-matrixSize">
+
+                    <label class="konturMatrixCalc--matrixCheckbox">
+                        <input 
+                            type="radio"
+                            name="matrix"
+                            checked>
+                        Матрица А
+                    </label>
+
+                    <label class="konturMatrixCalc--matrixCheckbox">
+                        <input 
+                            type="radio"
+                            name="matrix">
+                        Матрица B
+                    </label>
+
+                    <br>
+
+                    <input 
+                        type="button"
+                        class="konturMatrixCalc--button konturMatrixCalc--button-icon-add"
+                        value="Добавить">
+
+                    <input
+                        type="button" 
+                        class="konturMatrixCalc--button konturMatrixCalc--button-icon-delete"
+                        value="Удалить">
+
+                    <span>строку</span>
+
+                   <br>
+
+                    <input 
+                        type="button"
+                        class="konturMatrixCalc--button konturMatrixCalc--button-icon-add"
+                        value="Добавить">
+
+                    <input
+                        type="button" 
+                        class="konturMatrixCalc--button konturMatrixCalc--button-icon-delete"
+                        value="Удалить">
+
+                    <span>столбец</span>
+                </div>
+
+                <div class="konturMatrixCalc--functionalSection
+                            konturMatrixCalc--functionalSection-section-errorMessage">
+
+                </div>
+                
+            </div>
+
+            <div class="konturMatrixCalc--matrixPanel">
+                <div class="konturMatrixCalc--matrix">
+                    <table>
+                        <tr>
+                            <td><input type="text" value="" placeholder="1,1"</td>
+                            <td><input type="text" value="" placeholder="1,2"</td>
+                        </tr>
+                        <tr>
+                            <td><input type="text" value="" placeholder="2,1"</td>
+                            <td><input type="text" value="" placeholder="2,2"</td>
+                        </tr>
+                    </table>
+                </div>
+                
+                <div class="konturMatrixCalc--matrix">
+                    <table>
+                        <tr>
+                            <td><input type="text" value="" placeholder="1,1"</td>
+                            <td><input type="text" value="" placeholder="1,2"</td>
+                        </tr>
+                        <tr>
+                            <td><input type="text" value="" placeholder="2,1"</td>
+                            <td><input type="text" value="" placeholder="2,2"</td>
+                        </tr>
+                    </table>
+                    <span>A</span>
+                </div>
+
+                <br>
+
+                <div class="konturMatrixCalc--matrix">
+                    <table>
+                        <tr>
+                            <td><input type="text" value="" placeholder="1,1"</td>
+                            <td><input type="text" value="" placeholder="1,2"</td>
+                        </tr>
+                        <tr>
+                            <td><input type="text" value="" placeholder="2,1"</td>
+                            <td><input type="text" value="" placeholder="2,2"</td>
+                        </tr>
+                    </table><br>
+                    <span>B</span>
+                </div>
+
+            </div>
+        </div>
+    </body>
+</html>
