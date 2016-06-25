@@ -48,9 +48,27 @@ if (module) {
 
     /** @private */
     var _onClick = function(e) {
-		
-		alert('click calc button');
+
+        _multiplyIfAllValuesIsSet();
     };
+	
+    /** @private */
+    var _multiplyIfAllValuesIsSet = function() {
+
+        if (_model.getMatrixA().isFilled() && _model.getMatrixB().isFilled()) {
+
+            _model.matrixMultiply();
+
+            _view.getMatrixView().printMatrixFromModel(2, _model.getMatrixR());
+
+        } else {
+            
+            _view.getKonturMatrixCalcView().changeToolsPanelState(2);
+            _view.getMatrixCalcErrorView().setError(1);
+            _view.getMatrixCalcView().disableCalcButton();
+        };
+    };
+
 
 
     ////////////////////////////////////////////////////////////////////////////

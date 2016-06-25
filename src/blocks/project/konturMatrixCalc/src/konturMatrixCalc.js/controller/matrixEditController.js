@@ -63,15 +63,44 @@ if (module) {
     
     /** @private */
     var _clearButtonClickHandler = function() {
-		
-		alert('clear');
+
+        _model.getMatrixA().clear();
+        _model.getMatrixB().clear();
+        _model.getMatrixR().clear();
+
+        _view.getMatrixView().clearMatrix();
 	};
 	
 	/** @private */
 	var _swapButtonClickHandler = function() {
 	
-		alert('swap');
+        var view = _view.getMatrixView();
+
+        _model.swapMatrix();
+
+        _checkMultiplyPossibility();
+
+        view.printMatrixFromModel(0, _model.getMatrixA());
+        view.printMatrixFromModel(1, _model.getMatrixB());
+        view.printMatrixFromModel(2, _model.getMatrixR());
 	};
+	
+    /** @private */
+    var _checkMultiplyPossibility = function() {
+
+        if ( !_model.isMultiplyPossible() ) {
+
+            _view.getKonturMatrixCalcView().changeToolsPanelState(2);
+            _view.getMatrixCalcErrorView().setError(0);
+            _view.getMatrixCalcView().disableCalcButton();
+
+        } else {
+            
+            _view.getKonturMatrixCalcView().changeToolsPanelState(0);
+            _view.getMatrixCalcErrorView().removeError();
+            _view.getMatrixCalcView().enableCalcButton();
+        };
+    };
 
 
     ////////////////////////////////////////////////////////////////////////////

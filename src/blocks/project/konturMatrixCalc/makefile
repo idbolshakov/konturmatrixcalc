@@ -41,6 +41,7 @@ JS      = src/konturMatrixCalc.js/KONTUR_MATRIX_CALC.js\
 		  src/konturMatrixCalc.js/view/matrixSizeView.js\
 		  src/konturMatrixCalc.js/view/matrixEditView.js\
 		  src/konturMatrixCalc.js/view/matrixCalcView.js\
+		  src/konturMatrixCalc.js/view/matrixCalcErrorView.js\
 		  src/konturMatrixCalc.js/view/view.js\
 		  \
 		  src/konturMatrixCalc.js/controller/konturMatrixCalcController.js\

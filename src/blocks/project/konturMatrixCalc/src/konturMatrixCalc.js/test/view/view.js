@@ -48,6 +48,11 @@ describe('view module', function() {
         it('Should contain the getMatrixCalcView method', function() {
 
             assert.equal('function', typeof view.getMatrixCalcView);
+        });         
+        
+        it('Should contain the getMatrixCalcErrorView method', function() {
+
+            assert.equal('function', typeof view.getMatrixCalcErrorView);
         });                
     });
 
@@ -89,6 +94,14 @@ describe('view module', function() {
 
             assert.equal('object', typeof view.getMatrixCalcView());
         });
-    });       
+    });  
+    
+    describe('getMatrixCalcErrorView method', function() {
+
+        it('Should return an {object}', function() {
+
+            assert.equal('object', typeof view.getMatrixCalcErrorView());
+        });
+    });          
 });
 

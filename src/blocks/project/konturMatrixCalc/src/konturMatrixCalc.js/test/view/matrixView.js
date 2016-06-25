@@ -89,6 +89,12 @@ describe('matrixView', function() {
             assert.equal('function', typeof matrixView.popColumnFromMatrixB);
         });
 
+        it('Should contain the clearMatrix method', function() {
+
+            assert.equal('function', typeof matrixView.clearMatrix);
+        });
+
+
         it('Should contain the getContainer method', function() {
 
             assert.equal('function', typeof matrixView.getContainer);

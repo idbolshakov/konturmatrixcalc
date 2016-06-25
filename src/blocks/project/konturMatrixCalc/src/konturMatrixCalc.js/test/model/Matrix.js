@@ -158,6 +158,11 @@ describe('Matrix class', function() {
             assert.equal('function', typeof matrix.clear);
         });
 
+        it('Should contain isFilled method', function() {
+
+            assert.equal('function', typeof matrix.isFilled);
+        });
+
     });
 
     describe('getSize method', function() {
@@ -315,6 +320,41 @@ describe('Matrix class', function() {
                 };
             };
        });
+   });
+
+   describe('isFilled method', function() {
+
+       it('Should return {boolean} value', function() {
+
+           var matrix = new Matrix();
+
+           assert.strictEqual('boolean', typeof matrix.isFilled());
+       });
+
+       it('Should return {boolean} false, if matrix have {null} elements', function() {
+
+           var matrix = new Matrix();
+
+           assert.strictEqual(false, matrix.isFilled());
+
+           matrix.setValue(0,0,0);
+           matrix.setValue(1,0,0);
+
+           assert.strictEqual(false, matrix.isFilled());
+       });
+
+       it('Should return {boolean} true, if matrix have not {null} elements', function() {
+
+           var matrix = new Matrix();
+
+           matrix.setValue(0,0,0);
+           matrix.setValue(0,1,0);
+           matrix.setValue(1,0,0);
+           matrix.setValue(1,1,0);
+
+           assert.strictEqual(true, matrix.isFilled());
+       });
+
    });
 });
 

@@ -67,6 +67,10 @@ if (module) {
                     e.target.id,
                     _view.getMatrixSizeView(),
                     _getMatrixAndChangedSizeMethods());
+
+            _checkMatrixSizeBorders();
+
+            _checkMultiplyPossibility();
         };
     };
 
@@ -166,8 +170,6 @@ if (module) {
                 			
             break;
         };
-        
-        _checkMatrixSizeBorders();
     };
     
     /** @private */
@@ -213,6 +215,23 @@ if (module) {
 		};			
 	};
 	
+    /** @private */
+    var _checkMultiplyPossibility = function() {
+
+        if ( !_model.isMultiplyPossible() ) {
+
+            _view.getKonturMatrixCalcView().changeToolsPanelState(2);
+            _view.getMatrixCalcErrorView().setError(0);
+            _view.getMatrixCalcView().disableCalcButton();
+
+        } else {
+            
+            _view.getKonturMatrixCalcView().changeToolsPanelState(0);
+            _view.getMatrixCalcErrorView().removeError();
+            _view.getMatrixCalcView().enableCalcButton();
+        };
+    };
+
 	/** @private */
 	var _getCheckedMatrix = function(view) {
 		

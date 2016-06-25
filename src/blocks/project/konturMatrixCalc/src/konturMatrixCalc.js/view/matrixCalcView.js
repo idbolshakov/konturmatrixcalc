@@ -54,6 +54,25 @@ if (module) {
         return _calcButton;
     };
 
+    /**
+     * disableCalcButton
+     *
+     * @public
+     */
+    var disableCalcButton = function() {
+
+        _calcButton.disabled = true;
+    };
+
+    /**
+     * enableCalcButton
+     *
+     * @public
+     */
+    var enableCalcButton = function() {
+
+        _calcButton.disabled = false;
+    };
 
     ////////////////////////////////////////////////////////////////////////////
     // EXPORT
@@ -63,6 +82,8 @@ if (module) {
         
         init: init,
         getCalcButton: getCalcButton,
+        disableCalcButton: disableCalcButton,
+        enableCalcButton: enableCalcButton,
         
         CALC_BUTTON_ID: CALC_BUTTON_ID
     };

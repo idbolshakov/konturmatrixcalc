@@ -3,8 +3,8 @@
 // uglifyjs --define module=false bundle.js -c
 if (module) {
     
-    var Matrix = require('./Matrix');
-    var KONTUR_MATRIX_CALC = require('../KONTUR_MATRIX_CALC.js');
+    var KONTUR_MATRIX_CALC              = require('../KONTUR_MATRIX_CALC.js');
+        KONTUR_MATRIX_CALC.model.Matrix = require('./Matrix.js');
 };
 
 /**
@@ -24,6 +24,8 @@ if (module) {
 (function(KONTUR_MATRIX_CALC) {
 
     'use strict';
+
+    var Matrix = KONTUR_MATRIX_CALC.model.Matrix;
 
     /** @private */
     var _matrixA, _matrixB, _resultMatrix,

@@ -25,14 +25,16 @@ if (module) {
 
     /** @import */
     var
-        Matrix         = KONTUR_MATRIX_CALC.model.Matrix,
-        matrixMultiply = KONTUR_MATRIX_CALC.model.matrixMultiply;
+        Matrix          = KONTUR_MATRIX_CALC.model.Matrix,
+        _matrixMultiply = KONTUR_MATRIX_CALC.model.matrixMultiply;
 
     /** @private */
     var
-        _matrixA = null,
-        _matrixB = null,
-        _matrixR = null;
+        _matrixA   = null,
+        _matrixB   = null,
+        _matrixR   = null,
+
+        _swapped   = false;
 
     /** 
      * init
@@ -41,9 +43,9 @@ if (module) {
      */
     var init = function() {
 
-        _matrixA = new Matrix(2,2);
-        _matrixB = new Matrix(2,2);
-        _matrixR = new Matrix(2,2);
+        _matrixA = new Matrix();
+        _matrixB = new Matrix();
+        _matrixR = new Matrix();
     };
 
     /**
@@ -53,6 +55,11 @@ if (module) {
      * @return {Matrix} 
      */
     var getMatrixA = function() {
+
+        if (_swapped) {
+            
+            return _matrixB;
+        };
 
         return _matrixA;
     };
@@ -64,6 +71,11 @@ if (module) {
      * @return {Matrix} 
      */
     var getMatrixB = function() {
+
+        if (_swapped) {
+
+            return _matrixA;
+        };
 
         return _matrixB;
     };
@@ -78,6 +90,69 @@ if (module) {
 
         return _matrixR;
     };
+      
+    /**
+     * swapMatrix
+     *
+     * @public
+     */
+    var swapMatrix = function() {
+
+        if (_swapped) {
+
+            _swapped = false;
+
+        } else {
+
+            _swapped = true;
+        };
+
+        _resolveMatrixRSize();
+    };
+
+    /** @private */
+    var _resolveMatrixRSize = function() {
+
+        var rows    = getMatrixA().getSize().rows;
+        var columns = getMatrixB().getSize().columns;
+
+        _matrixR = new Matrix(rows, columns);
+    };
+ 
+    /**
+     * matrixMultiply
+     *
+     * @public
+     */
+    var matrixMultiply = function() {
+
+        if ( isMultiplyPossible() ) {
+
+            _matrixR = _matrixMultiply(getMatrixA(), getMatrixB());
+        };
+    };
+ 
+    /**
+     * isMultiplyPossible
+     *
+     * Проверяем можно ли умножать текущие матрицы
+     *
+     * Если число столбцов матрицы А = числу строк матрицы Б, значит 
+     * умножать можно, иначе - нельзя
+     *
+     * @public
+     * @return {boolean} - true, если умножать матрицы можно, false - нельзя
+     */
+    var isMultiplyPossible = function() {
+
+        if (getMatrixA().getSize().columns === getMatrixB().getSize().rows) {
+
+            return true;
+        };
+
+        return false;
+    };
+
 
     ////////////////////////////////////////////////////////////////////////////
     // EXPORT
@@ -88,7 +163,10 @@ if (module) {
         init: init,
         getMatrixA: getMatrixA,
         getMatrixB: getMatrixB,
-        getMatrixR: getMatrixR
+        getMatrixR: getMatrixR,
+        swapMatrix: swapMatrix,
+        matrixMultiply: matrixMultiply,
+        isMultiplyPossible: isMultiplyPossible
 	};
 
     // unit-testing stuff

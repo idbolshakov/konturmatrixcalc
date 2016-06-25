@@ -35,10 +35,24 @@ describe('model module', function() {
             assert.equal('function', typeof model.getMatrixB);
         });
 
-
         it('Should contain the getMatrixR method', function() {
 
             assert.equal('function', typeof model.getMatrixR);
+        });
+
+        it('Should contain the swapMatrix method', function() {
+
+            assert.equal('function', typeof model.swapMatrix);
+        });
+
+        it('Should contain the matrixMultiply method', function() {
+
+            assert.equal('function', typeof model.matrixMultiply);
+        });
+
+        it('Should contain the isMultiplyPossible method', function() {
+
+            assert.equal('function', typeof model.isMultiplyPossible);
         });
     });
 
@@ -126,5 +140,96 @@ describe('model module', function() {
         });
     });
 
+    describe('swapMatrix mehtod', function() {
+
+        it('Should swap MatrixA and MatrixB when called', function() {
+
+            model.init();
+
+            model.getMatrixA().setValue(0,0,0);
+            model.getMatrixB().setValue(0,0,1);
+
+            model.swapMatrix();
+
+            assert.equal(0, model.getMatrixB().getValues()[0][0]);
+            assert.equal(1, model.getMatrixA().getValues()[0][0]);
+        });
+
+        it('Should clear MatrixR when called', function() {
+
+            model.init();
+
+            model.getMatrixR().setValue(0,0,1);
+            model.getMatrixR().setValue(0,1,2);
+            model.getMatrixR().setValue(1,0,3);
+            model.getMatrixR().setValue(1,1,4);
+
+            model.swapMatrix();
+
+            var size = model.getMatrixR().getSize();
+            for (var i=0, l=size.rows; i<l; i++) {
+
+                for (var j=0, n=size.columns; j<n; j++) {
+
+                    assert.strictEqual(null, model.getMatrixR().getValues()[i][j]);
+                };
+            };
+        });
+
+        it('MatrixR rows len should be equal with matrixA rows len after call', function() {
+
+            model.init();
+
+            var len = model.getMatrixB().getSize().rows;
+            model.getMatrixB().pushRow();
+
+            model.swapMatrix();
+
+            assert.equal(len+1, model.getMatrixR().getSize().rows);
+        });
+
+        it('MatrixR columns len should be equal with matrixB columns len after call', function() {
+
+            model.init();
+
+            var len = model.getMatrixA().getSize().columns;
+            model.getMatrixA().pushColumn();
+
+            model.swapMatrix();
+
+            assert.equal(len+1, model.getMatrixR().getSize().columns);
+        });
+
+    });
+
+    describe('isMultiplyPossibe method', function() {
+
+        it('Should return a {boolean} value', function() {
+
+            assert.equal('boolean', typeof model.isMultiplyPossible());
+        });
+
+        it('Should return {boolean} true, when matrixA.columns = matrixB.rows', function() {
+
+            model.init();
+
+            model.getMatrixA().pushColumn();
+            model.getMatrixB().pushRow();
+
+            assert.strictEqual(true, model.isMultiplyPossible());
+        });
+
+        it('Should return {boolean} false, when matrixA.columns != matrixB.rows', function() {
+
+            model.init();
+
+            model.getMatrixA().pushColumn();
+            model.getMatrixA().pushColumn();
+            model.getMatrixB().pushRow();
+
+            assert.strictEqual(false, model.isMultiplyPossible());
+
+        });
+    });
 });
 

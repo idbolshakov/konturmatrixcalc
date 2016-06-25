@@ -33,6 +33,8 @@ if (module) {
      * init
      *
      * инициализируем все контроллеры
+     * 
+     * и представления без контроллеров
      *
      * @public
      */
@@ -47,6 +49,8 @@ if (module) {
         _matrixEditController.init(_model, _view);
         
         _matrixCalcController.init(_model, _view);
+
+        _view.getMatrixCalcErrorView().init();
     };
 
     /** @event */

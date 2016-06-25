@@ -24,6 +24,7 @@ if (module) {
  * 5. Добавлять столбец к концу матрицы [@see pushColumn()]
  * 6. Удалять последний столбец в матрице [@see popColumn()] 
  * 7. Очищать матрицу
+ * 8. Проверять заполнена ли матрица вся матрица значениями (не null)
  *
  *
  * Если значение для элемента в матрице еще не задано, то оно равно {null}
@@ -60,8 +61,8 @@ if (module) {
         this.MIN_VALUE = -10;
         this.MAX_VALUE =  10;
 
-        this._rows     = rows;
-        this._columns  = columns; 
+        this._rows     = rows    || this.MIN_SIZE;
+        this._columns  = columns || this.MIN_SIZE; 
 
         this._values   = [];
         this.clear(); // заполняем матрицу {null} эле-ами
@@ -208,8 +209,43 @@ if (module) {
 
         this._columns--;
     };
+ 
+    /**
+     * isFilled
+     *
+     * Удаляем из матрицы
+     * последний столбец
+     *
+     * @public
+     * @return {boolean} - true, если все элементы заданы, false - иначе
+     */
+    Matrix.prototype.isFilled = function() {
 
-    
+        for (var i=0, l=this._rows; i<l; i++) {
+
+            if (!this._allValuesInRowIsSet(i)) {
+
+                return false
+            };
+        };
+
+        return true;
+    };
+
+    /** @private **/
+    Matrix.prototype._allValuesInRowIsSet = function(row) {
+
+        for (var i=0, l=this._columns; i<l; i++) {
+
+            if (this._values[row][i] === null) {
+
+                return false;
+            };
+        };
+
+        return true;
+    };
+   
 
     ////////////////////////////////////////////////////////////////////////////
     // EXPORT

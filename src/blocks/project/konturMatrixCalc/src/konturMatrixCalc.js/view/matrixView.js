@@ -340,6 +340,38 @@ if (module) {
     };
 
 	/**
+     * clearMatrix
+     *
+     * @public
+     */
+    var clearMatrix = function() {
+
+        _clear(_matrixA);
+        _clear(_matrixB);
+        _clear(_matrixR);
+    };
+
+    /** @private */
+    var _clear = function(matrix) {
+
+        //  for all rows in matrix
+        for (var i=0, l=matrix.rows.length; i<l; i++) {
+
+            _clearAllCellsInRow(matrix, i);
+        };
+    };
+
+    /** @private */
+    var _clearAllCellsInRow = function(matrix, row) {
+
+        for (var i=0, l=matrix.rows[row].cells.length; i<l; i++) {
+
+            matrix.rows[row].cells[i].children[0].value = '';
+        };
+    };
+
+
+	/**
      * getContainer
      *
      * @public
@@ -375,6 +407,8 @@ if (module) {
 
         popColumnFromMatrixA: popColumnFromMatrixA,
         popColumnFromMatrixB: popColumnFromMatrixB,
+
+        clearMatrix: clearMatrix,
         
         getContainer: getContainer
     };

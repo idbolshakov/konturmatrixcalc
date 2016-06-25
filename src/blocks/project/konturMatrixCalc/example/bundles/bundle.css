@@ -100,6 +100,8 @@
 
     margin: 40px 0 0 0;
     padding: 0;
+
+    color: #da0902;
 }
 
 /**
@@ -153,7 +155,11 @@
 
 .konturMatrixCalc--calculateButton:disabled {
 
-    opacity: .75;
+    opacity: .5;
+
+    background: url('../static/svg/konturMatrixCalc--calculateButton.svg');
+    background-repeat: no-repeat;
+    background-position: 0 0;
 }
 
 /**

@@ -49,6 +49,10 @@
 
 .konturMatrixCalc--calculateButton:disabled {
 
-    opacity: .75;
+    opacity: .5;
+
+    background: url('../static/svg/konturMatrixCalc--calculateButton.svg');
+    background-repeat: no-repeat;
+    background-position: 0 0;
 }
 

@@ -36,6 +36,16 @@ describe('matrixCalcView', function() {
 
             assert.equal('function', typeof matrixCalcView.getCalcButton);
         });         
+        
+        it('Should contain the disableCalcButton method', function() {
+
+            assert.equal('function', typeof matrixCalcView.disableCalcButton);
+        });         
+ 
+        it('Should contain the enableCalcButton method', function() {
+
+            assert.equal('function', typeof matrixCalcView.enableCalcButton);
+        });         
 	});
    
     describe('getCalcButton method', function() {

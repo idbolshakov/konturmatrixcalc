@@ -9,6 +9,7 @@ if (module) {
     KONTUR_MATRIX_CALC.view.matrixView = require('./matrixView.js');
     KONTUR_MATRIX_CALC.view.matrixSizeView = require('./matrixSizeView.js');
     KONTUR_MATRIX_CALC.view.matrixCalcView = require('./matrixCalcView.js');
+    KONTUR_MATRIX_CALC.view.matrixCalcErrorView = require('./matrixCalcErrorView.js');
 };
 
 /**
@@ -31,7 +32,8 @@ if (module) {
         _matrixView           = KONTUR_MATRIX_CALC.view.matrixView,
         _matrixSizeView       = KONTUR_MATRIX_CALC.view.matrixSizeView,
         _matrixEditView       = KONTUR_MATRIX_CALC.view.matrixEditView,
-        _matrixCalcView       = KONTUR_MATRIX_CALC.view.matrixCalcView;
+        _matrixCalcView       = KONTUR_MATRIX_CALC.view.matrixCalcView,
+        _matrixCalcErrorView  = KONTUR_MATRIX_CALC.view.matrixCalcErrorView;
 
 
     /** 
@@ -88,7 +90,7 @@ if (module) {
     }; 
     
     /**
-     *  getMatrixEditView
+     *  getMatrixCalcView
      *
      *  @public
      *  @return {object}
@@ -96,7 +98,18 @@ if (module) {
     var getMatrixCalcView = function() {
 
         return _matrixCalcView;
-    };        
+    };   
+    
+    /**
+     *  getMatrixCalcErrorView
+     *
+     *  @public
+     *  @return {object}
+     */
+    var getMatrixCalcErrorView = function() {
+
+        return _matrixCalcErrorView;
+    };         
 
 
 
@@ -111,7 +124,8 @@ if (module) {
         getMatrixView: getMatrixView,
         getMatrixSizeView: getMatrixSizeView,
         getMatrixEditView: getMatrixEditView,
-        getMatrixCalcView: getMatrixCalcView
+        getMatrixCalcView: getMatrixCalcView,
+        getMatrixCalcErrorView: getMatrixCalcErrorView
 	};
 
     // unit-testing stuff
