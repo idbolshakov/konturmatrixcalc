@@ -160,6 +160,7 @@ if (module) {
         if (e.target.tagName === 'INPUT') {
 
             _view.getKonturMatrixCalcView().changeToolsPanelState(1);
+            _view.getMatrixCalcErrorView().removeError();
         }
     };
     /** @private */
