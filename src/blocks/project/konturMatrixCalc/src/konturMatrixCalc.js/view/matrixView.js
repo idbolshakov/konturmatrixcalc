@@ -88,6 +88,7 @@ if (module) {
      var printMatrixFromModel = function(matrixId, model) {
 		
 		var matrixContainer = _getMatrixContainer(matrixId);
+        matrixContainer.removeChild(matrixContainer.childNodes[0]);
 		
 		var rows     = model.getSize().rows;
 		var columns  = model.getSize().columns;		
@@ -101,7 +102,7 @@ if (module) {
 			matrix += _matrixTemplate.matrixRow({row:i, columns: columns, values: values[i], disabled: disabled});
 		};	
 		
-		matrixContainer.innerHTML = matrix;	 
+		matrixContainer.insertAdjacentHTML('afterBegin', matrix);	 
 	 };
 	 
 	 /** @private */

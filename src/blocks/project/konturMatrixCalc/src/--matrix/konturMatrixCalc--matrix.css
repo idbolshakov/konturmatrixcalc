@@ -63,6 +63,7 @@
     border: solid 1px #d9d9d9;
     border-radius: none;
 
+    animation: fadeIn 0.2s;
 }
 
 .konturMatrixCalc--matrix input:focus {
@@ -90,3 +91,8 @@
     font-size: 1.5em;
 }
 
+@keyframes fadeIn {
+
+    from { opacity: 0;}
+    to   { opacity: 1;}
+};

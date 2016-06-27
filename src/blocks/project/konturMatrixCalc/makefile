@@ -11,6 +11,7 @@ PROJECT = konturMatrixCalc
 BLOCK   = konturMatrixCalc
 
 CSS     = src/konturMatrixCalc.css\
+		  src/--font/konturMatrixCalc--font.css\
 		  src/--toolsPanel/konturMatrixCalc--toolsPanel.css\
 		  src/--toolsPanel/-state/-normal/konturMatrixCalc--toolsPanel-state-normal.css\
 		  src/--toolsPanel/-state/-input/konturMatrixCalc--toolsPanel-state-input.css\
@@ -61,7 +62,7 @@ PNG     =
 
 JPG     =  
 
-FONT    = 
+FONT    = src/--font/SegoeUIRegular 
 
 NJK     = 
 
@@ -69,6 +70,7 @@ TARGETS = delete_old_files\
 	      css_merge\
 		  js_merge\
 		  svg_copy\
+		  font_copy\
 		  example_update
 
 ################################################################################

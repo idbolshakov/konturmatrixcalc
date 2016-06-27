@@ -36,6 +36,9 @@
     background: url('../static/svg/konturMatrixCalc--calculateButton.svg');
     background-repeat: no-repeat;
     background-position: 0 -88px;
+    
+    border: none;
+    outline: none;
 }
 
 .konturMatrixCalc--calculateButton::-moz-focus-inner {border: 0;}

@@ -7,9 +7,9 @@ if (module) {
 };
 
 /**
- * matrixViewController
+ * matrixController
  * 
- * модуль matrixViewController,
+ * модуль matrixController,
  * необходим для управления представлением 
  * матриц блока konturMatrixCalc
  * 
@@ -157,7 +157,10 @@ if (module) {
     /** @private */
     var _onFocus = function(e) {
 
-        _view.getKonturMatrixCalcView().changeToolsPanelState(1);
+        if (e.target.tagName === 'INPUT') {
+
+            _view.getKonturMatrixCalcView().changeToolsPanelState(1);
+        }
     };
     /** @private */
     var _onBlur = function(e) {

@@ -1,0 +1,26 @@
+/**
+ * @section konturMatrixCalc
+ * @subsection konturMatrixCalc--font
+ */
+
+
+/* font-family: "SegoeUIRegular"; */
+@font-face {
+    font-family: "SegoeUIRegular";
+    src: url("../static/font/SegoeUIRegular/SegoeUIRegular.eot");
+    src: url("../static/font/SegoeUIRegular/SegoeUIRegular.eot?#iefix")format("embedded-opentype"),
+    url("../static/font/SegoeUIRegular/SegoeUIRegular.woff") format("woff"),
+    url("../static/font/SegoeUIRegular/SegoeUIRegular.ttf") format("truetype");
+    font-style: normal;
+    font-weight: normal;
+}
+.konturMatrixCalc * {
+
+    font-family: SegoeUIRegular, Sans;
+    font-size: 14px; 
+
+    color: #404040;
+
+    line-height: 20px;
+}
+

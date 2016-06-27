@@ -12,7 +12,34 @@
     margin: 0;
     padding: 0;
 
-    overflow: auto;
+    width: 100%;
+    height: 100%;
+}
+
+/**
+ * @section konturMatrixCalc
+ * @subsection konturMatrixCalc--font
+ */
+
+
+/* font-family: "SegoeUIRegular"; */
+@font-face {
+    font-family: "SegoeUIRegular";
+    src: url("../static/font/SegoeUIRegular/SegoeUIRegular.eot");
+    src: url("../static/font/SegoeUIRegular/SegoeUIRegular.eot?#iefix")format("embedded-opentype"),
+    url("../static/font/SegoeUIRegular/SegoeUIRegular.woff") format("woff"),
+    url("../static/font/SegoeUIRegular/SegoeUIRegular.ttf") format("truetype");
+    font-style: normal;
+    font-weight: normal;
+}
+.konturMatrixCalc * {
+
+    font-family: SegoeUIRegular, Sans;
+    font-size: 14px; 
+
+    color: #404040;
+
+    line-height: 20px;
 }
 
 /**
@@ -22,7 +49,6 @@
 .konturMatrixCalc--toolsPanel {
 
     display: block;
-
     float: left;
     box-sizing: border-box;
 
@@ -30,8 +56,9 @@
     padding: 0 0 0 32px;
 
     width: 350px;
-
     height: 100%;
+
+    overflow-y: auto;
 
     transition: background 0.25s;
 }
@@ -98,7 +125,7 @@
  */
 .konturMatrixCalc--functionalSection-section-errorMessage {
 
-    margin: 40px 0 0 0;
+    margin: 40px 20px 20px 0;
     padding: 0;
 
     color: #da0902;
@@ -142,6 +169,9 @@
     background: url('../static/svg/konturMatrixCalc--calculateButton.svg');
     background-repeat: no-repeat;
     background-position: 0 -88px;
+    
+    border: none;
+    outline: none;
 }
 
 .konturMatrixCalc--calculateButton::-moz-focus-inner {border: 0;}
@@ -178,7 +208,7 @@
 
 .konturMatrixCalc--matrixCheckbox>input {
 
-    margin: 0;
+    margin: 0 0.5em 0 0;
     padding: 0;
 }
 
@@ -241,6 +271,7 @@
     opacity: .75;
     
     background: #f2f2f2;
+    background-position: left center;
     
     border:        solid 1px rgba(0, 0, 0, .175);
     border-bottom: solid 1px rgba(0, 0, 0, .3);    
@@ -400,10 +431,13 @@
     box-sizing: border-box;
 
     margin: 0;
-    padding: 40px 0 0 370px;
 
     height: 100%;
+    width: auto;
 
+    overflow: auto;
+
+    white-space: nowrap;
 }
 
 /**
@@ -471,6 +505,7 @@
     border: solid 1px #d9d9d9;
     border-radius: none;
 
+    animation: fadeIn 0.2s;
 }
 
 .konturMatrixCalc--matrix input:focus {
@@ -498,3 +533,8 @@
     font-size: 1.5em;
 }
 
+@keyframes fadeIn {
+
+    from { opacity: 0;}
+    to   { opacity: 1;}
+};

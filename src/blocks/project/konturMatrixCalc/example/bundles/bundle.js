@@ -1053,6 +1053,7 @@ if (module) {
      var printMatrixFromModel = function(matrixId, model) {
 		
 		var matrixContainer = _getMatrixContainer(matrixId);
+        matrixContainer.removeChild(matrixContainer.childNodes[0]);
 		
 		var rows     = model.getSize().rows;
 		var columns  = model.getSize().columns;		
@@ -1066,7 +1067,7 @@ if (module) {
 			matrix += _matrixTemplate.matrixRow({row:i, columns: columns, values: values[i], disabled: disabled});
 		};	
 		
-		matrixContainer.innerHTML = matrix;	 
+		matrixContainer.insertAdjacentHTML('afterBegin', matrix);	 
 	 };
 	 
 	 /** @private */
@@ -2141,9 +2142,9 @@ if (module) {
 };
 
 /**
- * matrixViewController
+ * matrixController
  * 
- * модуль matrixViewController,
+ * модуль matrixController,
  * необходим для управления представлением 
  * матриц блока konturMatrixCalc
  * 
@@ -2291,7 +2292,10 @@ if (module) {
     /** @private */
     var _onFocus = function(e) {
 
-        _view.getKonturMatrixCalcView().changeToolsPanelState(1);
+        if (e.target.tagName === 'INPUT') {
+
+            _view.getKonturMatrixCalcView().changeToolsPanelState(1);
+        }
     };
     /** @private */
     var _onBlur = function(e) {

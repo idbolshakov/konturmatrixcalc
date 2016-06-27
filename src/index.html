@@ -2,16 +2,27 @@
 <html>
     <head>
         <meta charset="UTF-8">
-
+        
+		<!--[if !lte IE 8]>-->  
         <link rel="stylesheet" href="bundles/bundle.css">
+       <!--<![endif]-->
+        
+        <!--[if lte IE 8]>
+			<link rel="stylesheet" href="static/css/oldie.css">
+        <![endif]-->        
 
         <title>СКБ-КОНТУР калькулятор матриц</title>
     </head>
 
     <body>
-        <div class="konturMatrixCalc"></div>
-
+		<!--[if !lte IE 8]>-->
+        <div id="konturMatrixCalc" class="konturMatrixCalc"></div>
         <script src="bundles/bundle.js"></script>
+        <!--<![endif]-->
+        
+        <!--[if lte IE 8]>
+        <script src="static/js/oldie.js"></script>
+        <![endif]-->
     </body>
 </html>
 
