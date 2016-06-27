@@ -7,14 +7,14 @@
    xmlns="http://www.w3.org/2000/svg"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   fill="#000000"
    height="24"
    viewBox="0 0 24 24"
    width="24"
    id="svg2"
    version="1.1"
    inkscape:version="0.48.5 r10040"
-   sodipodi:docname="konturMatrixCalc--button-icon-clear.svg">
+   sodipodi:docname="konturMatrixCalc--button-icon-clear.svg"
+   fill="#000000">
   <metadata
      id="metadata12">
     <rdf:RDF>
@@ -37,25 +37,29 @@
      guidetolerance="10"
      inkscape:pageopacity="0"
      inkscape:pageshadow="2"
-     inkscape:window-width="1366"
-     inkscape:window-height="740"
+     inkscape:window-width="1680"
+     inkscape:window-height="974"
      id="namedview8"
      showgrid="false"
-     inkscape:zoom="9.8333333"
-     inkscape:cx="30.357906"
-     inkscape:cy="9.8346834"
-     inkscape:window-x="0"
-     inkscape:window-y="0"
+     inkscape:zoom="6.9532167"
+     inkscape:cx="30.324572"
+     inkscape:cy="36.357728"
+     inkscape:window-x="1366"
+     inkscape:window-y="24"
      inkscape:window-maximized="1"
      inkscape:current-layer="svg2" />
   <path
      d="M0 0h24v24H0z"
-     fill="none"
-     id="path4" />
-  <path
-     d="M 13.142857,5 C 9.3561906,5 6.2857143,8.134444 6.2857143,12 L 4,12 7.0476191,15.111111 10.095238,12 7.8095239,12 c 0,-3.01 2.3847621,-5.4444444 5.3333331,-5.4444444 2.948571,0 5.333334,2.4344444 5.333334,5.4444444 0,3.01 -2.384763,5.444444 -5.333334,5.444444 -1.150476,0 -2.217143,-0.381111 -3.093333,-1.011111 l -1.0819049,1.12 C 10.125714,18.455556 11.573334,19 13.142857,19 16.929524,19 20,15.865556 20,12 20,8.134444 16.929524,5 13.142857,5 z"
-     id="path6"
-     inkscape:connector-curvature="0"
-     sodipodi:nodetypes="scccccsssccsss"
-     style="fill:#404040;fill-opacity:1" />
+     id="path4"
+     fill="none" />
+  <g
+     style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#404040;fill-opacity:1;stroke:none;font-family:Sans"
+     id="text2983"
+     transform="matrix(0.35189003,0,0,0.42905061,13.90858,15.341174)">
+    <path
+       d="m 0.14261055,-14.340108 c -2.60418665,-0.013 -4.76564285,0.839863 -6.48437505,2.558593 -1.7187644,1.718766 -2.649753,3.7695454 -2.7929687,6.1523441 l 7.0898437,0 -10.5273435,9.9414063 -0.117188,0.1367187 c -0.130218,-0.091144 -0.533863,-0.5794252 -1.210937,-1.4648437 l -8.574219,-8.6132813 5.527344,0 c -6e-6,-1.8880075 0.351556,-3.7174328 1.054687,-5.4882811 0.703118,-1.770815 1.744784,-3.339824 3.125,-4.707031 1.835926,-1.822894 3.9778512,-3.059872 6.4257815,-3.710938 2.4478981,-0.651016 4.8958124,-0.651016 7.34375,0 2.4478908,0.651066 4.5963261,1.888044 6.4453125,3.710938 2.747363,2.773456 4.140591,6.1263172 4.179688,10.0585934 l -2.1289067,0 C 9.302735,-8.0705633 8.3457047,-10.07577 6.6269855,-11.781515 4.9082082,-13.487225 2.746752,-14.340088 0.14261055,-14.340108"
+       style="font-variant:normal;font-stretch:normal;fill:#404040;fill-opacity:1;font-family:Kontur-Iconic;-inkscape-font-specification:Kontur-Iconic"
+       id="path2988"
+       inkscape:connector-curvature="0" />
+  </g>
 </svg>
