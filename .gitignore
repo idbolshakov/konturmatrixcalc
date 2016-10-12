@@ -1,2 +1,5 @@
 # ignore build directory
 *build/
+
+# ignore vim swap files
+*.swp

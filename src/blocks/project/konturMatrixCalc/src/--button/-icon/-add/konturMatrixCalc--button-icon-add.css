@@ -2,33 +2,8 @@
  * @section konturMatrixCalc--button
  * @subsection konturMatrixCalc--button-icon
  */
-.konturMatrixCalc--button-icon-add {
+.konturMatrixCalc--button-icon-add:before {
 
-    background-image: url('../static/svg/konturMatrixCalc--button-icon-add.svg');
-    background-repeat: no-repeat;
-}
-
-.konturMatrixCalc--button-icon-add:hover {
-
-    background-image: url('../static/svg/konturMatrixCalc--button-icon-add.svg');
-    background-repeat: no-repeat;
-}
-
-.konturMatrixCalc--button-icon-add:active {
-
-    background-image: url('../static/svg/konturMatrixCalc--button-icon-add.svg');
-    background-repeat: no-repeat;
-}
-
-.konturMatrixCalc--button-icon-add:focus {
-
-    background-image: url('../static/svg/konturMatrixCalc--button-icon-add.svg');
-    background-repeat: no-repeat;
-}
-
-.konturMatrixCalc--button-icon-add:disabled {
-
-    background-image: url('../static/svg/konturMatrixCalc--button-icon-add.svg');
-    background-repeat: no-repeat;
+    content: "\e00D";
 }
 

@@ -38,18 +38,18 @@ if (module) {
 					+'id="konturMatrixCalc--functionalSection-matrixEdit" '
 					+'class="konturMatrixCalc--functionalSection konturMatrixCalc--functionalSection-section-matrixEdit">'
 
-                    +'<input '
-                        +'id="konturMatrixCalc--button-clear"'
-                        +'type="button"'
-                        +'class="konturMatrixCalc--button konturMatrixCalc--button-icon-clear"'
-                        +'value="Очистить матрицы">'
-                    +'<br>'
+                    +'<button '
+                        +'id="konturMatrixCalc--button-clear" '
+                        +'type="button" '
+                        +'class="konturMatrixCalc--button konturMatrixCalc--button-icon-clear">'
+                        +'Очистить матрицы</button><br>'
 
-                    +'<input '
+                    +'<button '
                         +'id="konturMatrixCalc--button-swap"'
                         +'type="button"'
-                        +'class="konturMatrixCalc--button konturMatrixCalc--button-icon-swap"'
-                        +'value="Поменять матрицы местами">'
+                        +'class="konturMatrixCalc--button konturMatrixCalc--button-icon-swap">'
+                        +'Поменять матрицы местами</button><br>'
+
                 +'</div>'
 
                 +'<div '
@@ -72,33 +72,31 @@ if (module) {
                             +'name="konturMatrixCalc--matrixCheckbox">' +'Матрица B'
                     +'</label><br>'
 
-
-                    +'<input '
+                    +'<button '
                         +'id="konturMatrixCalc--button-addRow"'
                         +'type="button"'
-                        +'class="konturMatrixCalc--button konturMatrixCalc--button-icon-add"'
-                        +'value="Добавить">'
+                        +'class="konturMatrixCalc--button konturMatrixCalc--button-icon-add">'
+                        +'Добавить</button>'
 
-                    +'<input '
+                    +'<button '
                         +'id="konturMatrixCalc--button-deleteRow"'
                         +'type="button"'
-                        +'class="konturMatrixCalc--button konturMatrixCalc--button-icon-delete"'
-                        +'value="Удалить">'
+                        +'class="konturMatrixCalc--button konturMatrixCalc--button-icon-delete">'
+                        +'Удалить</button>'
 
                     +'<span>строку</span><br>'
 
-
-                    +'<input '
+                    +'<button '
                         +'id="konturMatrixCalc--button-addColumn"'
                         +'type="button"'
-                        +'class="konturMatrixCalc--button konturMatrixCalc--button-icon-add"'
-                        +'value="Добавить">'
+                        +'class="konturMatrixCalc--button konturMatrixCalc--button-icon-add">'
+                        +'Добавить</button>'
 
-                    +'<input '
+                    +'<button '
                         +'id="konturMatrixCalc--button-deleteColumn"'
                         +'type="button"'
-                        +'class="konturMatrixCalc--button konturMatrixCalc--button-icon-delete"'
-                        +'value="Удалить">'
+                        +'class="konturMatrixCalc--button konturMatrixCalc--button-icon-delete">'
+                        +'Удалить</button>'
 
                     +'<span>столбец</span>'
                 +'</div>'

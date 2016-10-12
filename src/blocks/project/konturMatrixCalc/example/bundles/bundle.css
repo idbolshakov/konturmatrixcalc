@@ -32,6 +32,15 @@
     font-style: normal;
     font-weight: normal;
 }
+
+@font-face {
+
+    font-family: Kontur;
+    src: url("../static/font/Kontur/Kontur.ttf");
+    font-style: normal;
+    font-weight: normal;
+}
+
 .konturMatrixCalc * {
 
     font-family: SegoeUIRegular, Sans;
@@ -221,10 +230,9 @@
     display: inline-block;
 
     margin: 0 11px 11px 0;
-    padding: 5px 5px 5px 20px;
+    padding: 5px;
 
     background: #f2f2f2;
-    background-position: left center;
     background-clip: padding-box;
 
     border:        solid 1px rgba(0, 0, 0, .175);
@@ -232,16 +240,20 @@
     border-radius: 3px;
 }
 
+.konturMatrixCalc--button:before{
+
+    font-family: Kontur;
+    font-weight: normal;
+}
+
 .konturMatrixCalc--button:hover {
 
     background: #e6e6e6;
-    background-position: left center;
 }
 
 .konturMatrixCalc--button:focus {
 
     background: #f4f4f4;
-    background-position: left center;
 
     border: solid 1px #5199db;
 
@@ -255,7 +267,6 @@
 .konturMatrixCalc--button:active {
 
     background: #d9d9d9;
-    background-position: left center;
  
     border:        solid 1px rgba(0, 0, 0, .155);
     border-bottom: solid 1px rgba(0, 0, 0, .125);
@@ -271,7 +282,6 @@
     opacity: .75;
     
     background: #f2f2f2;
-    background-position: left center;
     
     border:        solid 1px rgba(0, 0, 0, .175);
     border-bottom: solid 1px rgba(0, 0, 0, .3);    
@@ -285,140 +295,36 @@
  * @section konturMatrixCalc--button
  * @subsection konturMatrixCalc--button-icon
  */
-.konturMatrixCalc--button-icon-add {
+.konturMatrixCalc--button-icon-add:before {
 
-    background-image: url('../static/svg/konturMatrixCalc--button-icon-add.svg');
-    background-repeat: no-repeat;
-}
-
-.konturMatrixCalc--button-icon-add:hover {
-
-    background-image: url('../static/svg/konturMatrixCalc--button-icon-add.svg');
-    background-repeat: no-repeat;
-}
-
-.konturMatrixCalc--button-icon-add:active {
-
-    background-image: url('../static/svg/konturMatrixCalc--button-icon-add.svg');
-    background-repeat: no-repeat;
-}
-
-.konturMatrixCalc--button-icon-add:focus {
-
-    background-image: url('../static/svg/konturMatrixCalc--button-icon-add.svg');
-    background-repeat: no-repeat;
-}
-
-.konturMatrixCalc--button-icon-add:disabled {
-
-    background-image: url('../static/svg/konturMatrixCalc--button-icon-add.svg');
-    background-repeat: no-repeat;
+    content: "\e00D";
 }
 
 /**
  * @section konturMatrixCalc--button
  * @subsection konturMatrixCalc--button-icon
  */
-.konturMatrixCalc--button-icon-clear {
-    background-image: url('../static/svg/konturMatrixCalc--button-icon-clear.svg');
-    background-repeat: no-repeat;
+.konturMatrixCalc--button-icon-clear:before {
 
-}
-
-.konturMatrixCalc--button-icon-clear:hover {
-
-    background-image: url('../static/svg/konturMatrixCalc--button-icon-clear.svg');
-    background-repeat: no-repeat;
-}
-
-.konturMatrixCalc--button-icon-clear:active {
-
-    background-image: url('../static/svg/konturMatrixCalc--button-icon-clear.svg');
-    background-repeat: no-repeat;
-}
-
-.konturMatrixCalc--button-icon-clear:focus {
-
-    background-image: url('../static/svg/konturMatrixCalc--button-icon-clear.svg');
-    background-repeat: no-repeat;
-}
-
-.konturMatrixCalc--button-icon-clear:disabled {
-
-    background-image: url('../static/svg/konturMatrixCalc--button-icon-clear.svg');
-    background-repeat: no-repeat;
+    content: "\e012";
 }
 
 /**
  * @section konturMatrixCalc--button
  * @subsection konturMatrixCalc--button-icon
  */
-.konturMatrixCalc--button-icon-delete {
+.konturMatrixCalc--button-icon-delete:before {
 
-    background-image: url('../static/svg/konturMatrixCalc--button-icon-delete.svg');
-    background-repeat: no-repeat;
-
-
-}
-
-.konturMatrixCalc--button-icon-delete:hover {
-
-    background-image: url('../static/svg/konturMatrixCalc--button-icon-delete.svg');
-    background-repeat: no-repeat;
-}
-
-.konturMatrixCalc--button-icon-delete:active {
-
-    background-image: url('../static/svg/konturMatrixCalc--button-icon-delete.svg');
-    background-repeat: no-repeat;
-}
-
-.konturMatrixCalc--button-icon-delete:focus {
-
-    background-image: url('../static/svg/konturMatrixCalc--button-icon-delete.svg');
-    background-repeat: no-repeat;
-}
-
-.konturMatrixCalc--button-icon-delete:disabled {
-
-    background-image: url('../static/svg/konturMatrixCalc--button-icon-delete.svg');
-    background-repeat: no-repeat;
+    content: "\e01e";
 }
 
 /**
  * @section konturMatrixCalc--button
  * @subsection konturMatrixCalc--button-icon
  */
-.konturMatrixCalc--button-icon-swap {
+.konturMatrixCalc--button-icon-swap:before {
 
-    background-image: url('../static/svg/konturMatrixCalc--button-icon-swap.svg');
-    background-repeat: no-repeat;
-
-
-}
-
-.konturMatrixCalc--button-icon-swap:hover {
-
-    background-image: url('../static/svg/konturMatrixCalc--button-icon-swap.svg');
-    background-repeat: no-repeat;
-}
-
-.konturMatrixCalc--button-icon-swap:active {
-
-    background-image: url('../static/svg/konturMatrixCalc--button-icon-swap.svg');
-    background-repeat: no-repeat;
-}
-
-.konturMatrixCalc--button-icon-swap:focus {
-
-    background-image: url('../static/svg/konturMatrixCalc--button-icon-swap.svg');
-    background-repeat: no-repeat;
-}
-
-.konturMatrixCalc--button-icon-swap:disabled {
-
-    background-image: url('../static/svg/konturMatrixCalc--button-icon-swap.svg');
-    background-repeat: no-repeat;
+    content: "\e01f";
 }
 
 /**

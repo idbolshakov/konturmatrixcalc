@@ -53,16 +53,13 @@ JS      = src/konturMatrixCalc.js/KONTUR_MATRIX_CALC.js\
 		  src/konturMatrixCalc.js/controller/controller.js
 
 SVG     = src/--calculateButton/konturMatrixCalc--calculateButton.svg\
-		  src/--button/-icon/-add/konturMatrixCalc--button-icon-add.svg\
-		  src/--button/-icon/-delete/konturMatrixCalc--button-icon-delete.svg\
-		  src/--button/-icon/-clear/konturMatrixCalc--button-icon-clear.svg\
-		  src/--button/-icon/-swap/konturMatrixCalc--button-icon-swap.svg 
 
 PNG     =  
 
 JPG     =  
 
-FONT    = src/--font/SegoeUIRegular 
+FONT    = src/--font/SegoeUIRegular\
+		  src/--font/Kontur\
 
 NJK     = 
 
