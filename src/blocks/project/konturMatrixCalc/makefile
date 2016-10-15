@@ -53,6 +53,7 @@ JS      = src/konturMatrixCalc.js/KONTUR_MATRIX_CALC.js\
 		  src/konturMatrixCalc.js/controller/controller.js
 
 SVG     = src/--calculateButton/konturMatrixCalc--calculateButton.svg\
+		  src/--matrixCheckbox/konturMatrixCalc--matrixCheckbox.svg\
 
 PNG     =  
 

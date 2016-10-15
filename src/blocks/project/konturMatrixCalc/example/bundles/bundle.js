@@ -786,6 +786,7 @@ if (module) {
                             +'type="radio"'
                             +'name="konturMatrixCalc--matrixCheckbox"'
                             +'checked>'
+                            +'<span></span>'
                         +'Матрица А'
                     +'</label>'
 
@@ -793,7 +794,9 @@ if (module) {
                         +'<input '
                             +'id="kontruMatrixCalc--matrixCheckbox-matrix-B"'
                             +'type="radio"'
-                            +'name="konturMatrixCalc--matrixCheckbox">' +'Матрица B'
+                            +'name="konturMatrixCalc--matrixCheckbox">' 
+                            +'<span></span>'
+                            +'Матрица B'
                     +'</label><br>'
 
                     +'<button '

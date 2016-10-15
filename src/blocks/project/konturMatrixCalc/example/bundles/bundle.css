@@ -217,8 +217,47 @@
 
 .konturMatrixCalc--matrixCheckbox>input {
 
-    margin: 0 0.5em 0 0;
+    opacity: 0;
+    margin-right: -15px;
+}
+
+.konturMatrixCalc--matrixCheckbox>span {
+
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+
+    margin:  0 0.5em 0 0;
     padding: 0;
+
+    background: url('../static/svg/konturMatrixCalc--matrixCheckbox.svg');
+    background-position: 0 0;
+}
+
+.konturMatrixCalc--matrixCheckbox>input:checked + span {
+
+    background: url('../static/svg/konturMatrixCalc--matrixCheckbox.svg');
+    background-position: 0 -15px;
+}
+
+.konturMatrixCalc--matrixCheckbox>input:focus + span {
+
+    background: url('../static/svg/konturMatrixCalc--matrixCheckbox.svg');
+    background-position: 0 -30px;
+
+    border-radius: 7.5px;
+
+    -webkit-box-shadow: 0px 0px 0px 1px rgba(81,153,219,1);
+       -moz-box-shadow: 0px 0px 0px 1px rgba(81,153,219,1);
+            box-shadow: 0px 0px 0px 1px rgba(81,153,219,1);
+
+}
+
+.konturMatrixCalc--matrixCheckbox>input:checked:focus + span {
+
+    background: url('../static/svg/konturMatrixCalc--matrixCheckbox.svg');
+    background-position: 0 -45px;
+
 }
 
 /**
