@@ -26,7 +26,7 @@
          offset="0"
          id="stop3836" />
       <stop
-         style="stop-color:#3d801a;stop-opacity:1"
+         style="stop-color:#3d5a1a;stop-opacity:1"
          offset="1"
          id="stop3838" />
     </linearGradient>
@@ -67,10 +67,10 @@
        inkscape:collect="always"
        xlink:href="#linearGradient3834"
        id="linearGradient3840"
-       x1="98.489876"
-       y1="1051.8607"
-       x2="98.489876"
-       y2="1014.228"
+       x1="98.847015"
+       y1="1016.369"
+       x2="98.847015"
+       y2="1012.7101"
        gradientUnits="userSpaceOnUse"
        gradientTransform="translate(0,-2.0000326)" />
   </defs>
@@ -81,9 +81,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="2.8"
-     inkscape:cx="133.55135"
-     inkscape:cy="63.304871"
+     inkscape:zoom="4"
+     inkscape:cx="94.342092"
+     inkscape:cy="21.537137"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -122,7 +122,7 @@
        inkscape:connector-curvature="0"
        sodipodi:nodetypes="cccccc" />
     <path
-       style="fill:url(#linearGradient3840);fill-opacity:1;stroke:#37662b;stroke-width:0.99142516000000003px;stroke-linecap:butt;stroke-linejoin:round;stroke-opacity:1"
+       style="fill:url(#linearGradient3840);fill-opacity:1;stroke:#37782b;stroke-width:0.99142516000000003px;stroke-linecap:butt;stroke-linejoin:round;stroke-opacity:1"
        d="m 178.65074,1049.8665 10.85355,-19.5043 -11.77566,-19.5045 -177.23291742,0.2157 0.461058,38.7931 177.69396942,0"
        id="path3906-2-8-3"
        inkscape:connector-curvature="0"
